@@ -69,7 +69,7 @@ print(greeting) # print the greeting
 
 # When?
 
-Refactor to functions functions when you:
+Use functions when you:
 
 * Have deeply nested code
 * Use 'break' statements
