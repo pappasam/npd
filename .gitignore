@@ -8,6 +8,9 @@ presentation/
 # virtual environment convention
 venv/
 
+# vim
+*.swp
+
 ################
 # Stuff for C
 ################
