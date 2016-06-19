@@ -1,9 +1,5 @@
 # Functions
 
-Course: 1
-
-Session: 1
-
 Topics: 
 Functions, values, and refactoring source code 
 Organizing documentation with docstrings
