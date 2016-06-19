@@ -4,12 +4,6 @@ Topics:
 Functions, values, and refactoring source code 
 Organizing documentation with docstrings
 
-* What?
-* How?
-* Why?
-* When?
-* Where?
-
 
 # What?
 
