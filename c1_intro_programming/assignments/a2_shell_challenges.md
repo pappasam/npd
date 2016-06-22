@@ -9,7 +9,7 @@ commands by performing several exercises.
 All of the commands necessary for this section should already be installed when
 your operating system is finished with its setup process.
 
-## Assignment
+## Exercise
 
 Perform the following actions:
 
@@ -63,3 +63,12 @@ You can use the `mkdir` command to create a new directory.
 **Use `mkdir` to create a directory where you will place all of your coding
 projects. If you don't have an opinion on what to call it just use 'src'.**
 
+## Assignment
+
+### Use wget to fetch a vimrc file. You can get a download URL by going to a
+github page displaying a vimrc file and using the context menu to 'Copy link
+address' over the 'Raw' link. Some suggestion download urls for you to try:
+
+    https://github.com/pappasam/configsettings/raw/master/vimrc_minimum
+
+###
