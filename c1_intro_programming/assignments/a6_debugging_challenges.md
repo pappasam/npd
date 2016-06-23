@@ -5,16 +5,26 @@ invaluable skill
 
 ## Assignment
 
-Below exercises are more like brainstorms, not valid python
+What is incorrect or faulty about the following code snippets? Submit corrected
+versions of these code samples.  
 
-### Data Filtering
+### Homemade `cat`
 
-def removeFirstValue(line):
-    line.split(",")
+def printFile(filePath):
+    f = file(filePath)
+    contents = f.read()
+    printContents()
 
-### Error Handling
-
-def checkInputs(argA, argB):
-    return argA / 0
-    raise("syntax error")
+def printContents():
+    print("Contents of " + filePath)
+    print(contents)
     
+
+### Exception Ordering
+
+def divideAndConquer(argA, argB):
+    return argA / argB
+    if argB == 0:
+        raise ZeroDivisionError("Woops, divided by zero")
+
+
