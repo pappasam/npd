@@ -7,12 +7,14 @@ commands by performing several exercises.
 ## Setup
 
 All of the commands necessary for this section should already be installed when
-your operating system is finished with its setup process.
+your operating system is finished with its setup process. 
+
+Windows instructions are [here][install-windows].
+
 
 ## Exercise
 
 Perform the following actions:
-
 
 ### 0: Read the Manual
 
@@ -63,6 +65,16 @@ You can use the `mkdir` command to create a new directory.
 **Use `mkdir` to create a directory where you will place all of your coding
 projects. If you don't have an opinion on what to call it just use 'src'.**
 
+### 5: Print File Contents
+
+The `cat` command prints its arguments to the standard output, or STDOUT:
+
+    cat ~/.bashrc
+
+It derives its name from 'concatenate' since it will sequentially print multiple
+arguments to the same output. ** Use output redirection to combine 2 files into
+1.**
+
 ## Assignment
 
 ### Download
@@ -84,3 +96,16 @@ suggested minimal python focused vimrc:
 If you looking at a file on the Github web view you can get a download URL by
 going to a github page displaying a vimrc file and using the context menu to
 'Copy link address' over the 'Raw' link.
+
+### Searching
+
+Use grep to search a text file for some substring. This is often extremely
+useful when you guess that some string must exist in the codebase, but you don't
+know where. Searching for the class on a navbar element might lead you to where
+relevant styling resides.
+
+    grep pageContainer
+
+### Output Redirection
+
+[install-windows][http://www.everydaylinuxuser.com/2014/05/how-to-install-linux-mint-as-virtual.html]
