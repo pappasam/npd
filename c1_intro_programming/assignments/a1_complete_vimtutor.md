@@ -1,7 +1,7 @@
 # Complete Vimtutor
 
 While `vim` is a powerful tool that enables highly efficient editing, it has
-a steep learning curve. To facilitate the process of familiarization a
+a bit of a learning curve. To facilitate the process of familiarization a
 program called `vimtutor` is usually included along with the vim executable.
 
 Vimtutor is nothing more than a shell script that uses vim to open up a

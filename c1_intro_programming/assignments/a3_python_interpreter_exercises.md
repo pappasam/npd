@@ -22,9 +22,20 @@ Install the python version 3.4 interpreter, and the bpython wrapper system.
 Run bpython and experiment with these assignments. You can save your command
 history for submission through the interface.
 
-### Use the `os.path` module to get the cwd absolute path of your current
-working directory.
+### Create a workspace
 
-### Open a file and write some text to it.
+Within the bpython interpreter use the `os` module for (3) taskss:
+
+1. Get your current working directory with `os.getcwd`.
+2. If you are not already in your home directory, us `os.chdir` to update your
+currentworking directory to that location.
+3. Create a directory to create a directory called `python-exercises` and change
+directories into it with another `os` invocation.
+
+### Read and Write
+
+Open a file and write some string to it. Close the interpreter and examine the
+file with vim. Reopen `bpython` and return to your exercise folder if necessary.
+Read the file contents into a variable the print that variable.
 
 ### 

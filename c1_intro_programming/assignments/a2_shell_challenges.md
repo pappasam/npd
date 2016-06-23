@@ -65,10 +65,22 @@ projects. If you don't have an opinion on what to call it just use 'src'.**
 
 ## Assignment
 
-### Use wget to fetch a vimrc file. You can get a download URL by going to a
-github page displaying a vimrc file and using the context menu to 'Copy link
-address' over the 'Raw' link. Some suggestion download urls for you to try:
+### Download
 
-    https://github.com/pappasam/configsettings/raw/master/vimrc_minimum
+Use wget to download several files. You can use a browser in a graphical environment
+(and really, also a shell environment), to find the URL of a particular resource
+that you would like to download. Download at least the following (3) things:
 
-###
+1. A background image for your desktop, or a text containing a quotation that
+you can set as a bash login greeting.
+2. The non-file URL of a website page. Open the resulting source file with vim
+and see what your browser receives and parses into the webpage.
+3. A configuration file for Vim. If you have no preference, use the following
+suggested minimal python focused vimrc:
+
+    https://github.com/pappasam/npd/tree/C1/c1_intro_programming
+
+
+If you looking at a file on the Github web view you can get a download URL by
+going to a github page displaying a vimrc file and using the context menu to
+'Copy link address' over the 'Raw' link.
