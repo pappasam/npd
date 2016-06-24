@@ -15,13 +15,18 @@ with the following command:
 
     sudo apt-get install vim
 
-Vimtutor should also be accessible at this point, seek assistance from the
-instructor otherwise.
+Vimtutor should also be accessible at this point, if you attempt to start it and
+see an error instead then try googling the text of the error and seeing if anybody
+online has encountered the same issue. If you can't find instructions to fix the
+issue seek assistance from the instructor
 
 ## Assignment
 
-Run the following command to start
+Run the following command to start:
 
     vimtutor
 
-Follow the instructions in the file
+Follow the instructions in the file to practice essential vim commands. When you
+have completed the exercise you can write the completed vimtutor file to your
+home directory or simply demonstrate to the instructor.
+

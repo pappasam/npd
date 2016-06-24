@@ -11,7 +11,6 @@ your operating system is finished with its setup process.
 
 Windows instructions are [here][install-windows].
 
-
 ## Exercise
 
 Perform the following actions:
@@ -77,6 +76,14 @@ arguments to the same output. ** Use output redirection to combine 2 files into
 
 ## Assignment
 
+### Prepare Submissions
+
+Create a directory called `intro_to_python` in your home directory that will
+store your assignment submissions for this course, and within that create
+`assignment_2` to contain the artifacts that you will generate for this
+assigment. **Any files downloaded or results of commands should be saved in this
+folder, as well as a README.md file that** that explains the directory contents.
+
 ### Download
 
 Use wget to download several files. You can use a browser in a graphical environment
@@ -91,7 +98,6 @@ and see what your browser receives and parses into the webpage.
 suggested minimal python focused vimrc:
 
     https://github.com/pappasam/npd/tree/C1/c1_intro_programming
-
 
 If you looking at a file on the Github web view you can get a download URL by
 going to a github page displaying a vimrc file and using the context menu to
@@ -108,5 +114,18 @@ relevant styling resides.
 
 ### Output Redirection
 
-[install-windows][http://www.everydaylinuxuser.com/2014/05/how-to-install-linux-mint-as-virtual.html]
+In class we discussed the standard input and output channels available by
+default to most programs and how it is possible to redirect those streams of
+data so that other programs can directly process them without needing to
+explicitly save to an intermediate file.
+
+### Packaging it Up
+
+Use the `tar` command to package your `assignment_2` directory into a tarball.
+If you are in a graphical linux environment, use a browser to email the tarball
+to `im60@nyu.edu`. If in a vagrant environment, you can access the file from
+your host machine by moving the tarball to the `/vagrant/` directory and submit
+it using your host OS.
+
+[install-windows]: http://www.everydaylinuxuser.com/2014/05/how-to-install-linux-mint-as-virtual.html
 
