@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Base presentation</title>
+    <meta charset="utf-8">
+      <style>
+        html {
+          font-size: 100%;
+          font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        }
+        body {
+          margin: 0;
+          line-height: 1.5;
+          font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+          font-size: 24px;
+          color: #555555;
+          background-color: #FFFFFF;
+        }
+        a {
+          color: #555555;
+          text-decoration: none;
+          font-weight: 500;
+        }
+        a:hover,
+        a:focus {
+          color: #00989e;
+          text-decoration: underline;
+        }
+        a:focus {
+          outline: 3px solid #00989e;
+          outline-offset: 0;
+          background-color: #00989e;
+          color: #FFFFFF;
+          text-decoration: none;
+        }
+        ol {
+          padding: 0 0 0 1.5em;
+          margin: 1em 0;
+        }
+        ul {
+          padding: 0 0 0 1em;
+          margin: 1em 0;
+        }
+        img {
+          vertical-align: middle;
+          max-height: 600px;
+          margin: 0 auto 1em;
+          display: block;
+        }
+        hr {
+          height: 0;
+          margin: 1em 0;
+          border: 0;
+          border-top: 1px solid #cccccc;
+        }
+        b,
+        strong {
+          font-weight: 500;
+        }
+        blockquote {
+          border-left: 5px solid #cccccc;
+          padding-left: 1em;
+          margin: 1em -1em;
+          font-style: italic;
+          color: #999999;
+        }
+
+        .remark-slide {
+          display: table;
+        }
+        .remark-slide-content {
+          margin: 1em 0 0.5em;
+          display: table-cell;
+          vertical-align: top;
+          padding: 2em 4em;
+          font-size: 24px;
+        }
+        .remark-slide-content h1 {
+          /* Begin horizontal center */
+          margin: auto;
+          width: 60%;
+          padding: 10px;
+          text-align: center;
+          /* End horizontal center */
+          font-size: 60px;
+          color: #00989e;
+          font-weight: 500;
+        }
+        .remark-slide-content h2 {
+          font-size: 52.8px;
+          color: #00989e;
+          font-weight: 500;
+        }
+        .remark-slide-content h3 {
+          font-size: 48px;
+          color: #00989e;
+          font-weight: 500;
+        }
+        .remark-slide-content h4 {
+          font-size: 43.2px;
+          color: #00989e;
+          font-weight: 500;
+        }
+        .remark-slide-content h5 {
+          font-size: 38.4px;
+          color: #00989e;
+          font-weight: 500;
+        }
+        .remark-slide-content h6 {
+          font-size: 33.6px;
+          color: #00989e;
+          font-weight: 500;
+        }
+        .remark-code, remark-inline-code {
+          font-family: 'Ubuntu Mono';
+          font-size: 12px;
+        }
+        .remark-slide-content > :first-child {
+          margin-top: 0;
+        }
+        .remark-slide-content > :last-child {
+          margin-bottom: 0;
+        }
+        .footnote {
+          position: absolute;
+          bottom: 3em;
+        }
+      </style>
+  </head>
+  <body>
+    <textarea id="source">{% block slideshow %}{% endblock %}</textarea>
+    <script src="remark-latest.min.js"></script>
+    <script>
+      var slideshow = remark.create({
+          highlightStyle: 'monokai',
+          highlightLanguage: 'remark',
+          highlightLines: true,
+          });
+    </script>
+  </body>
+</html>
