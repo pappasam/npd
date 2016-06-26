@@ -1,9 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}
-
 # Functions
-
 {% endblock %}
 
 {% block main %}
