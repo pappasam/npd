@@ -3,147 +3,38 @@
   <head>
     <title>Base presentation</title>
     <meta charset="utf-8">
-      <style>
-        html {
-          font-size: 100%;
-          font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-        }
-        body {
-          margin: 0;
-          line-height: 1.5;
-          font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-          font-size: 24px;
-          color: #555555;
-          background-color: #FFFFFF;
-        }
-        a {
-          color: #555555;
-          text-decoration: none;
-          font-weight: 500;
-        }
-        a:hover,
-        a:focus {
-          color: #00989e;
-          text-decoration: underline;
-        }
-        a:focus {
-          outline: 3px solid #00989e;
-          outline-offset: 0;
-          background-color: #00989e;
-          color: #FFFFFF;
-          text-decoration: none;
-        }
-        ol {
-          padding: 0 0 0 1.5em;
-          margin: 1em 0;
-        }
-        ul {
-          padding: 0 0 0 1em;
-          margin: 1em 0;
-        }
-        img {
-          vertical-align: middle;
-          max-height: 600px;
-          margin: 0 auto 1em;
-          display: block;
-        }
-        hr {
-          height: 0;
-          margin: 1em 0;
-          border: 0;
-          border-top: 1px solid #cccccc;
-        }
-        b,
-        strong {
-          font-weight: 500;
-        }
-        blockquote {
-          border-left: 5px solid #cccccc;
-          padding-left: 1em;
-          margin: 1em -1em;
-          font-style: italic;
-          color: #999999;
-        }
-
-        .remark-slide {
-          display: table;
-        }
-        .remark-slide-content {
-          margin: 1em 0 0.5em;
-          display: table-cell;
-          vertical-align: top;
-          padding: 2em 4em;
-          font-size: 24px;
-        }
-        .remark-slide-content h1 {
-          /* Begin horizontal center */
-          margin: auto;
-          width: 60%;
-          padding: 10px;
-          text-align: center;
-          /* End horizontal center */
-          font-size: 60px;
-          color: #00989e;
-          font-weight: 500;
-        }
-        .remark-slide-content h2 {
-          font-size: 52.8px;
-          color: #00989e;
-          font-weight: 500;
-        }
-        .remark-slide-content h3 {
-          font-size: 48px;
-          color: #00989e;
-          font-weight: 500;
-        }
-        .remark-slide-content h4 {
-          font-size: 43.2px;
-          color: #00989e;
-          font-weight: 500;
-        }
-        .remark-slide-content h5 {
-          font-size: 38.4px;
-          color: #00989e;
-          font-weight: 500;
-        }
-        .remark-slide-content h6 {
-          font-size: 33.6px;
-          color: #00989e;
-          font-weight: 500;
-        }
-        .remark-code, remark-inline-code {
-          font-family: 'Ubuntu Mono';
-          font-size: 12px;
-        }
-        .remark-slide-content > :first-child {
-          margin-top: 0;
-        }
-        .remark-slide-content > :last-child {
-          margin-bottom: 0;
-        }
-        .footnote {
-          position: absolute;
-          bottom: 3em;
-        }
-      </style>
+    <link rel="stylesheet" type="text/css" href="style.css">
   </head>
   <body>
     <textarea id="source">
+name: inverse
+layout: true
+class: center, middle, inverse
+---
+
 
 # Functions
 
-Topics:
+
+---
+layout: false
+
+
+# Today's topics
 
 * Functions, values, and refactoring source code
 * Organizing documentation with docstrings
 
 ---
+# What is a function?
 
-# What?
-
-* An executable statement
-* A user-defined object
-* A first-class object
+.left-column[
+* executable statement
+* user-defined object
+* first-class object
+]
+.right-column[
+### Minimal function
 
 ```python
 def i_am_a_function(arg1, arg2, banana):
@@ -151,23 +42,21 @@ def i_am_a_function(arg1, arg2, banana):
     args_with_banana = str(sum_of_args) + " " + banana
     return "Value: " + args_with_banana
 ```
+]
 
 ---
 
-# How?
-
-1. Create function named FUNCTIONNAME
-1. FUNCTIONNAME accepts args in ARGUMENTLIST
-1. DOCSTRING documents function behavior
-1. STATEMENT_* processes the args
-1. Returns SOMETHING to the program
-
----
-
-# How Example
+# How is a function made?
 
 ```python
-# Abstract
+## Steps
+
+# 1. Create function named FUNCTIONNAME
+# 2. FUNCTIONNAME accepts args in ARGUMENTLIST
+# 3. DOCSTRING documents function behavior
+# 4. STATEMENT_* processes the args
+# 5. Returns SOMETHING to the program
+
 def FUNCTIONNAME(ARGUMENTLIST):
     '''DOCSTRING'''
     STATEMENT_1
@@ -177,10 +66,7 @@ def FUNCTIONNAME(ARGUMENTLIST):
 
 # Example
 def hello(person):
-    '''Format a string saying hello to the person
-
-    :param person: STR
-    '''
+    '''Format a string saying hello to the person'''
     return "hello {}".format(person)
 
 greeting = hello("samuel") # obtain the greeting
@@ -189,7 +75,7 @@ print(greeting) # print the greeting
 
 ---
 
-# Why?
+# Why make a function?
 
 * Why == DRY: don't repeat yourself
 * Abstraction
@@ -198,9 +84,9 @@ print(greeting) # print the greeting
 
 ---
 
-# When?
+# When to make a function?
 
-Use functions when you:
+## Use functions when you:
 
 * Have deeply nested code
 * Use 'break' statements
@@ -210,20 +96,19 @@ Use functions when you:
 
 ---
 
-# Where?
+# Where should you use functions?
 
-Many good programs are structured as follows:
+#### Many good programs are structured as follows:
 
 1. Define lots of words
 1. Define procedures with these words
 1. Order the procedures
 1. Send data through them
 
-Functions are useful in all steps 
-Therefore, functions belong almost everywhere
+#### Functions are useful in all steps and belong almost everywhere
 
-</textarea>
-    <script src="remark-latest.min.js"></script>
+    </textarea>
+    <script src="remark.min.js"></script>
     <script>
       var slideshow = remark.create({
           highlightStyle: 'monokai',
