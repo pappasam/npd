@@ -48,6 +48,15 @@ All shapes in our simplified version of Flatland contain shapes with sides of eq
   * Make squares enemies of triangles and circles
   * Print each object's name, its shape type, its friends, and its enemies
 
-## Challenge requirements
+## Challenges
 
-If you are able to complete the minimum requirements, there is a lot more you can do.
+* Create additional shape classes for
+  * pentagon
+  * hexagon
+  * star
+* Refactor shape classes to inherit from an abstract Shape base class
+  * Define abstract methods and abstract properties
+    * Think about why we might want to do this in the real world
+  * Look into the "abc" module
+* Create a short interactive game
+  * Look into the "input()" function

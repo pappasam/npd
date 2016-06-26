@@ -1,4 +1,4 @@
-# A1 - Refactor assignments from course 1
+# Refactor assignments from course 1
 
 ## Introduction
 
