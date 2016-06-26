@@ -33,7 +33,7 @@ z = lambda t: t + 1
 
 # Classes
 
-Classes are confusing
+### Classes are confusing
 
 * Abstraction of abstraction
 * Create complexity
@@ -54,7 +54,7 @@ class Y(object):
 # Objects & Classes
 
 .left-column[
-Analogies.
+Analogies
 ]
 .right-column[
 ## Objects
@@ -99,15 +99,19 @@ class N(B):
 # Definitions
 
 ## Name
+
 The identifier for the class
 
 ## Data attributes
+
 Data associated with a class that is not callable
 
 ## Methods
+
 Callable functions associated with a class
 
 ## Base
+
 Some class on which the class being defined is based
 
 ---
@@ -144,6 +148,7 @@ jennifer.speak('hehe')
 * "special" methods
 * private methods (or lack thereof)
 * names use CapWords
+
 
 ```python
 # special methods
