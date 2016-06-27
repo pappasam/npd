@@ -5,6 +5,10 @@ While `vim` is a powerful tool that enables highly efficient editing, it has
 a bit of a learning curve. To facilitate the process of familiarization a
 program called `vimtutor` is usually included along with the vim executable.
 
+There are several other command line programs that will be equally important for
+proficiency in your environment. Familiarize yourself with these programs by
+experimenting with them in your Vagrant controlled VM environments.
+
 ## Setup
 
 If the `vim` program is not already accessible from the command line, install it
@@ -63,7 +67,8 @@ Use `mkdir` to create a directory called `intro-programming` in your home
 directory. Any text or files required as part of an assignment submission should
 be placed in this folder.
 
-**Create empty exercise directory at `~/intro-programming`.**
+**Create new exercise directory at `~/intro-programming`. Inside create a
+READE.md file that will contain any notes required for the assignment.**
 
 ### Explore the Filesystem
 
@@ -80,7 +85,7 @@ mnt, opt, sbin, srv, tmp, usr, var. Use vim to record your observations in
 
 You can read a
 [document](https://d37djvu3ytnwxt.cloudfront.net/asset-v1:LinuxFoundationX+LFS101x+1T2016+type@asset+block/LFS101_Ch3_Sec1_FSH.pdf)
-explaining the purposes of these files to guide your exploration.
+explaining the purposes of these directories to guide your exploration.
 
 ### Output Redirection
 
@@ -93,9 +98,10 @@ You can redirect the output to a file using the `>` operator:
     cat ~/.bashrc > .bashrc.backup
 
 `cat` derives its name from 'concatenate' since it will sequentially print multiple
-arguments to the same output. **Use `cat` and command line globbing shortcuts to
-combine all the assignment markdown files into a single file located at
-`~/intro-programming/assignment_summary.md`.**
+arguments to the same output. **Use `cat` to combine the contents of multiple
+files into one summary file located at
+`~/intro-programming/catted_file.txt`. Add a note in `README.md` explaining what
+files you combined.**
 
 ### Version Control
 
@@ -113,7 +119,7 @@ Create an account on Github, which is free if you don't use any private
 repository storage, then use the web interface to create a new repository.
 Github provides [excellent
 documentation](https://guides.github.com/activities/hello-world/) of their own
-for this process..
+for this process.
 
 Once you have added a remote pointer to your repository on github, you can push
 the new content on your master branch to the public repository:
@@ -127,6 +133,6 @@ the Github web interface available when using a browser to visit a repository
 URL.
 
 **Follow the linked tutorials and examples from class to keep submitting changes
-and improvements to your repository until class is over. Extensions can be
-discussed with the instructor.**
+and improvements to your repository until class is over. Email a link to the
+repo to im60@nyu.edu**
 
