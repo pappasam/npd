@@ -14,6 +14,7 @@ experimenting with them in your Vagrant controlled VM environments.
 If the `vim` program is not already accessible from the command line, install it
 with the following command:
 
+    sudo apt-get update --fix-missing
     sudo apt-get install vim
 
 Vimtutor should also be accessible at this point, if you attempt to start it and
@@ -29,8 +30,8 @@ you can install similarly to vim with apt-get:
 ## Submission
 
 You will not need to submit evidence of having completed vimtutor, though the
-rest of the submissions will probably be quite time consuming if you haven't
-gone through the tutor at least once.
+rest of the submissions may be time consuming if you haven't gone through the
+tutor at least once.
 
 Part of this assignment will involve creating a directory to store your
 submission files, adding that data to a version control system, and publishing
