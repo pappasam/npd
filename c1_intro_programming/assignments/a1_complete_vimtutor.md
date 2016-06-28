@@ -11,27 +11,18 @@ experimenting with them in your Vagrant controlled VM environments.
 
 ## Setup
 
-If the `vim` program is not already accessible from the command line, install it
-with the following command:
+If you have not already done so, run the following three commands in your shell
+command prompt. You may have to do this again if starting up a new VM through
+vagrant.
 
     sudo apt-get update --fix-missing
     sudo apt-get install vim
-
-Vimtutor should also be accessible at this point, if you attempt to start it and
-see an error instead then try googling the text of the error and seeing if anybody
-online has encountered the same issue. If you can't find instructions to fix the
-issue seek assistance from the instructor
-
-The rest of the commands should be available by default except for git, which
-you can install similarly to vim with apt-get:
-
     sudo apt-get install git
 
 ## Submission
 
-You will not need to submit evidence of having completed vimtutor, though the
-rest of the submissions may be time consuming if you haven't gone through the
-tutor at least once.
+You will not need to submit evidence of having completed vimtutor, though you
+should complete it at least once before the next class.
 
 Part of this assignment will involve creating a directory to store your
 submission files, adding that data to a version control system, and publishing
@@ -41,16 +32,14 @@ that information for analysis by the course instructors.
 
 ### Vimtutor
 
-Vimtutor is nothing more than a shell script that uses vim to open up a
-temporary copy of a text file containing an overview of basic commands as well as
-sample text to practice editing commands as you learn them. Start it by typing
-the following command into your shell prompt:
+Vimtutor is a shell script that uses vim to open up an ordinary text file. The
+words in this text give you instructions on how to edit the same text to
+practice vim commands. Start it from your shell prompt with the following
+command:
 
     vimtutor
 
-Follow the instructions in the file to practice essential vim commands. After
-completing the tutor at least once you will be equipped to perform any text
-manipulation required for further assignments.
+**Follow the instructions in the file.**
 
 ### Read the Manual
 
@@ -60,7 +49,8 @@ more information about. It can even be used to teach you about `man` itself:
 
     man man
 
-**Use `man` to learn about all subsequent commands in this assignment.**
+**Run the above command to learn more about `man`. Use this command to learn
+about newly introduced commands.**
 
 ### Creating a Workspace
 
@@ -68,53 +58,62 @@ Use `mkdir` to create a directory called `intro-programming` in your home
 directory. Any text or files required as part of an assignment submission should
 be placed in this folder.
 
-**Create new exercise directory at `~/intro-programming`. Inside create a
-READE.md file that will contain any notes required for the assignment.**
+**Create new exercise directory at `~/intro-programming` and inside put a
+README.md file where you can save any notes about the assignment you would like
+to add:**
+
+    cd ~
+    mkdir intro-programming
+    cd intro-programming
+    touch README.md
+    ls -l
+
 
 ### Explore the Filesystem
 
 The shell program takes into account the current working directory when parsing
 and executing commands entered at the prompt. You can use commands like `cd` to
-update the current working directory to shorten the length of the relative path
-for a desired file, and other commands for determining the contents of
-directories and what the current working directory is.
+update the current working directory, after which paths omitting the `/` (root)
+directory will be assumed to be relative to the current position.
 
-**Use cd, pwd, and ls to investigate the following directories and their
-contents located within the root directory: bin, boot, dev, etc, lib, media,
-mnt, opt, sbin, srv, tmp, usr, var. Use vim to record your observations in
-`~/intro-programming/filesystem_notes.txt`.**
+**Use `cd` with the following absolute paths as arguments to change the working
+directory to each of these folders: **
+
+/bin, /boot, /dev, /etc, /lib, /media, /mnt, /opt, /sbin, /srv, /tmp, /usr, /var
+
+While in each directory, use `ls` with the long flag `-l` to print the directory
+contents. Run the command again and pipe the output to a summary file located in
+`~/intro-programming`.
+
+An example for the `bin` directory would be
+
+    cd /bin
+    pwd
+    ls -l
+    ls -l > ~/intro-programming/bin-contents.txt
+
+And after completing this for each directory you should have a separate file for
+each. Use vim to record any errors you encounter in
+`~/intro-programming/README.md`.**
 
 You can read a
 [document](https://d37djvu3ytnwxt.cloudfront.net/asset-v1:LinuxFoundationX+LFS101x+1T2016+type@asset+block/LFS101_Ch3_Sec1_FSH.pdf)
 explaining the purposes of these directories to guide your exploration.
 
-### Output Redirection
-
-The `cat` command prints its arguments to the standard output, or STDOUT:
-
-    cat ~/.bashrc
-
-You can redirect the output to a file using the `>` operator:
-
-    cat ~/.bashrc > .bashrc.backup
-
-`cat` derives its name from 'concatenate' since it will sequentially print multiple
-arguments to the same output. **Use `cat` to combine the contents of multiple
-files into one summary file located at
-`~/intro-programming/catted_file.txt`. Add a note in `README.md` explaining what
-files you combined.**
-
 ### Version Control
 
-Change your working directory to `~/intro-programming`. Run the following
-command to turn the directory and its children contents into a git repository:
+**Follow these instructions plus linked tutorials and examples from class to
+publish your work in your own repository. Email a link to the repo to im60@nyu.edu**
 
+Run the following commands to turn `intro-programming` into a git repository:
+
+    cd ~/intro-programming
     git init
 
 Stage and commit commands as discussed in class:
 
     git add .
-    git commit -m "initial commit"
+    git commit -m "adding initial assignment 1 files"
 
 Create an account on Github, which is free if you don't use any private
 repository storage, then use the web interface to create a new repository.
@@ -122,18 +121,19 @@ Github provides [excellent
 documentation](https://guides.github.com/activities/hello-world/) of their own
 for this process.
 
-Once you have added a remote pointer to your repository on github, you can push
-the new content on your master branch to the public repository:
+Creating an empty repository will display instructions for how to add content to
+it. You should see two lines that look like the following:
 
+    git remote add origin https://github.com/boombador/asdfasdf.git
     git push -u origin master
-    # only need to set the upstream flag once, later invocations can look like:
-    git push
+
+Substitute your own repository URL as displayed on the page and enter those
+commands in the shell. If you get an error you probably need to ensure that
+you're pointing to the right URL and that you're still in the
+`intro-programming` directory and already made it into a git repository. Running
+`git status` should tell not warn you that you're outside of a git repo.
 
 Now you should be able to browse the files submitted for this assignment with
 the Github web interface available when using a browser to visit a repository
 URL.
-
-**Follow the linked tutorials and examples from class to keep submitting changes
-and improvements to your repository until class is over. Email a link to the
-repo to im60@nyu.edu**
 

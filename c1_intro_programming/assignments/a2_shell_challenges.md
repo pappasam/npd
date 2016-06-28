@@ -30,6 +30,21 @@ directory `~/intro-programming/assignment_1`, and an empty directory is created
 for assignment_2. Stage, commit, and push these changes to your public
 submission repository added to Github in the last class.**
 
+### Output Redirection
+
+The `cat` command prints its arguments to the standard output, or STDOUT:
+
+    cat ~/.bashrc
+
+You can redirect the output to a file using the `>` operator:
+
+    cat ~/.bashrc > .bashrc.backup
+
+`cat` derives its name from 'concatenate' since it will sequentially print multiple
+arguments to the same output. **Use `cat` to combine the contents of multiple
+files into one summary file located at
+`~/intro-programming/catted_file.txt`. Add a note in `README.md` explaining what
+files you combined.**
 ### Download
 
 Use wget to download several files. You can use a browser in a graphical environment
