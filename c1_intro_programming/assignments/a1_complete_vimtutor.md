@@ -76,8 +76,8 @@ and executing commands entered at the prompt. You can use commands like `cd` to
 update the current working directory, after which paths omitting the `/` (root)
 directory will be assumed to be relative to the current position.
 
-**Use `cd` with the following absolute paths as arguments to change the working
-directory to each of these folders: **
+** Use `cd` with the following absolute paths as arguments to change the working
+directory to each of these folders:
 
 /bin, /boot, /dev, /etc, /lib, /media, /mnt, /opt, /sbin, /srv, /tmp, /usr, /var
 
@@ -94,7 +94,7 @@ An example for the `bin` directory would be
 
 And after completing this for each directory you should have a separate file for
 each. Use vim to record any errors you encounter in
-`~/intro-programming/README.md`.**
+`~/intro-programming/README.md`. **
 
 You can read a
 [document](https://d37djvu3ytnwxt.cloudfront.net/asset-v1:LinuxFoundationX+LFS101x+1T2016+type@asset+block/LFS101_Ch3_Sec1_FSH.pdf)
