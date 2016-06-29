@@ -1,26 +1,23 @@
-# Shell Challenges
+
+# Session 2: Shell and Python
 
 There are a number of commands that will prove very useful in your day-to-day
 operations within the Linux environment. Familiarize yourself with these
 commands by performing several exercises.
 
-## Setup
+## Tasks
 
-All of the commands necessary for this section should already be installed when
-your operating system is finished with its setup process. 
+### Complete Vimtutor
 
-Windows instructions are [here][install-windows].
-
-## Assignment
+If you are still working on vimtutor, or have downtime during class and have not
+completed it a second time, continue where you left off.
 
 ### Prepare Submissions
 
-In your previous assignment you created the directory `~/intro-programming` and
-placed any files to be submitted within it. Now we will organize this repo file
-organization to keep multiple assignments organized. Change your working
-directory into the repository folder, then use `git mv` to change the stored
-location of the files:
+Follow in class demonstration to ensure your github submission repo is properly
+configured. The commands should look like the following:
 
+    cd ~/intro-programming
     mkdir assignment_1 
     git mv * assignment_1
     mkdir assignment_2
@@ -28,65 +25,72 @@ location of the files:
 **Ensure all the files from the previous assignment are moved into the
 directory `~/intro-programming/assignment_1`, and an empty directory is created
 for assignment_2. Stage, commit, and push these changes to your public
-submission repository added to Github in the last class.**
+submission repository as demonstrated in class.**
 
-### Output Redirection
+### Anatomy of a Command Line
 
-The `cat` command prints its arguments to the standard output, or STDOUT:
+Follow in-class discussion on the command prompt, answer the following questions
+to demonstrate your understanding of the structure of a command line. This
+exercise will take the form of writing answers in a file
+`~/intro-programming/assignment_2/commands.md`.
 
-    cat ~/.bashrc
+    ls -l ~/intro-programming
 
-You can redirect the output to a file using the `>` operator:
+Which of the above tokens is the executable? Which is the argument? Which is the
+flag?
 
-    cat ~/.bashrc > .bashrc.backup
+    git add func_list.c
 
-`cat` derives its name from 'concatenate' since it will sequentially print multiple
-arguments to the same output. **Use `cat` to combine the contents of multiple
-files into one summary file located at
-`~/intro-programming/catted_file.txt`. Add a note in `README.md` explaining what
-files you combined.**
+This one is a bit trickier, what in the above command is an argument and what is
+an executable?
+
 ### Download
 
-Use wget to download several files. You can use a browser in a graphical environment
-(and really, also a shell environment), to find the URL of a particular resource
-that you would like to download. Download at least the following (3) things:
+If trying to run `wget` results in an error, run `sudo apt-get install wget`.
 
-1. A background image for your desktop, or a text containing a quotation that
-you can set as a bash login greeting.
-2. The non-file URL of a website page. Open the resulting source file with vim
+Use wget to download several files. Use a browser to find the URL of a
+particular resource that you would like to download. After downloading
+use vim to inspect the files on your machine.
+
+**Create a new file at `~/intro-programming/assignment_2/downloads.md`, use vim
+to record the URLs you downloaded and any questions or observations you had
+about what you found in the file.**
+
+1. The non-file URL of a website page. Open the resulting source file with vim
 and see what your browser receives and parses into the webpage.
-3. A configuration file for Vim. If you have no preference, use the following
+2. A configuration file for Vim. If you have no preference, use the following
 suggested minimal python focused vimrc:
 
-    https://github.com/pappasam/npd/tree/C1/c1_intro_programming
+    https://raw.githubusercontent.com/pappasam/configsettings/master/vimrc_minimum
 
 If you looking at a file on the Github web view you can get a download URL by
 going to a github page displaying a vimrc file and using the context menu to
 'Copy link address' over the 'Raw' link.
 
-### Searching
+### Search a Codebase
 
-Use grep to search a text file for some substring. This is often extremely
-useful when you guess that some string must exist in the codebase, but you don't
-know where. Searching for the class on a navbar element might lead you to where
-relevant styling resides.
+Clone and enter the class repo:
 
-    grep pageContainer
+    cd ~
+    git clone https://github.com/pappasam/npd.git
+    cd npd
 
-### Output Redirection
+**Use `grep` to find all instances of the string 'provision' in that repo. The
+basic usage pattern of grep is:**
 
-In class we discussed the standard input and output channels available by
-default to most programs and how it is possible to redirect those streams of
-data so that other programs can directly process them without needing to
-explicitly save to an intermediate file.
+    grep 'queryString' file_arg.txt
 
-### Packaging it Up
+Where 'queryString' is what you're looking for, and file_arg.txt is the file you
+want to search.
 
-Use the `tar` command to package your `assignment_2` directory into a tarball.
-If you are in a graphical linux environment, use a browser to email the tarball
-to `im60@nyu.edu`. If in a vagrant environment, you can access the file from
-your host machine by moving the tarball to the `/vagrant/` directory and submit
-it using your host OS.
+HINT: On the manual page look for flags dealing with case sensitivity and
+recursive options.
 
-[install-windows]: http://www.everydaylinuxuser.com/2014/05/how-to-install-linux-mint-as-virtual.html
+### Python Usage
+
+**Follow the demonstrations in class to perform some example python computation.
+Once completed use <ctrl><s> to use bpython's save feature to record your
+command history and save it into
+`~/intro-programming/assignment_2/python_history.py`.**
+
 
