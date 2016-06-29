@@ -3,6 +3,7 @@
 {% block title %}
 # Filetypes: CSV, JSON, YAML
 # Files in general
+# Pandas and Numpy
 {% endblock %}
 
 {% block main %}
@@ -217,7 +218,7 @@ with open('newfile.txt', 'r') as f_read:
 Any class can be made into a context manager if it has the following two methods:
 
 ```python
-def __enter__(self)
+def __enter__(self):
     # what to do before context begins
     # what object to bind context to
 
@@ -235,6 +236,7 @@ Context managers can be used with the "with" statement
 ```python
 # Manage the context of some interaction so cleanup occurs
 from databaseclass import Conn
+
 class Connection(object):
     def __init__(self, ip_address, password):
         self.ip_address = ip_address
@@ -255,5 +257,73 @@ with Connection("10.0.0.1", "surfervictory") as myconn:
     myconn.post("I did a query")
 # Now the connection is closed
 ```
+---
+
+# NumPy and Pandas
+
+* Basis for Python's rivalry with R for data analysis
+* Really C, C++, and Fortran wrappers
+* Pandas organizes data structures from NumPy
+
+---
+
+# NumPy introduction
+
+* Fundamental package for scientific computing in Python
+* Organizes data into n-dimensional arrays
+* Performs efficient calculations on these arrays
+
+---
+
+# NumPy uses
+
+* Repeated computations over large amounts of data
+* Dependency of other packages (eg, SciPy)
+* Convenience - many array operations are already methods
+
+---
+
+# Pandas introduction
+
+* Abstraction on top of NumPy
+* Provides structure to NumPy arrays
+  * Series
+  * DataFrames
+* Provides methods on these new structures
+
+---
+
+# Pandas uses
+
+* AdHoc analytics
+* Big-ish data analysis otherwise performed in spreadsheets
+* Base for data visualization
+
+---
+
+# Pandas and NumPy - Caveats
+
+* Additional system dependencies on installation
+  * Need Fortran compiler for NumPy
+* Overkill for many common usecases
+* Not Pythonic
+
+---
+
+# Rules-of-thumb for Pandas and NumPy
+
+## Use when
+
+* You are doing AdHoc data analysis
+* Collaborating with someone using R
+* You have many in-memory data transformations
+
+## Avoid when
+
+* Deploying to a production environment
+* Standard Python data structures will do
+* Data integrity is very important
+  * Data types are looser in Pandas
+  * NaN results in all sorts of "Gotcha" trade-offs for performance
 
 {% endblock %}
