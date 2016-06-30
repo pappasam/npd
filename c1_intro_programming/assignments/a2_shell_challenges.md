@@ -91,6 +91,11 @@ If you get an error, or haven't created it yet, do so now:
 
     mkdir -p ~/intro-programming/assignment_2
 
+If you have created a repository previously use git to clone it. This is what
+the URL would look like for the sample repository I created in class.
+
+    git clone https://github.com/boombador/intro-programming.git
+
 ### Anatomy of a Command Line
 
 Follow in-class discussion on the command prompt, answer the following questions
@@ -105,16 +110,17 @@ flag?
 
     git add func_list.c
 
-This one is a bit trickier, what in the above command is an argument and what is
-an executable?
+This one is a bit trickier, what in the above command tokens is an argument and
+what is an executable?.
 
 ### Download
-
-If trying to run `wget` results in an error, run `sudo apt-get install wget`.
 
 Use wget to download several files. Use a browser to find the URL of a
 particular resource that you would like to download. After downloading
 use vim to inspect the files on your machine.
+
+If trying to run `wget` results in an error, run `sudo apt-get install wget` and
+double check the URL.
 
 **Create a new file at `~/intro-programming/assignment_2/downloads.md`, use vim
 to record the URLs you downloaded and any questions or observations you had
@@ -162,4 +168,21 @@ Once completed use bpython's save feature to record your
 command history and save it into
 `~/intro-programming/assignment_2/python_history.py`.**
 
+### Git Submission
+
+If you created a new repository in the earlier step (meaning you used `git init`
+instead of `git clone`) then you have to set the remote. Here's an example using
+the URL for the repo I created in class.
+
+    git remote add origin https://github.com/boombador/intro-programming.git
+
+Once you have an initialized git repository with files in it you are ready to
+save, use the following commands
+
+    git add .
+    git commit -m "you decide what this message says"
+    git push -u origin master
+
+We will go over these commands again plus the benefits of branching and merging
+in the next class.
 
