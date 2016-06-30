@@ -19,6 +19,13 @@ Install the python version 3.4 interpreter, and the bpython wrapper system.
 
 ## Assignment
 
+### Python Usage
+
+**Follow the demonstrations in class to perform some example python computation.
+Once completed use bpython's save feature to record your
+command history and save it into
+`~/intro-programming/assignment_2/python_history.py`.**
+
 Run bpython and experiment with these assignments. You can save your command
 history for submission through the interface.
 
@@ -37,5 +44,3 @@ directories into it with another `os` invocation.
 Open a file and write some string to it. Close the interpreter and examine the
 file with vim. Reopen `bpython` and return to your exercise folder if necessary.
 Read the file contents into a variable the print that variable.
-
-### 

@@ -161,13 +161,6 @@ want to search.
 HINT: On the manual page look for flags dealing with case sensitivity and
 recursive options.
 
-### Python Usage
-
-**Follow the demonstrations in class to perform some example python computation.
-Once completed use bpython's save feature to record your
-command history and save it into
-`~/intro-programming/assignment_2/python_history.py`.**
-
 ### Git Submission
 
 If you created a new repository in the earlier step (meaning you used `git init`
