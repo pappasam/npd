@@ -1,8 +1,8 @@
 #!/bin/bash
 
-echo "UNMODIFIED SCRIPT: this script has been written with instructor\'s"
+echo "UNMODIFIED SCRIPT: this script has been written with instructor's"
 echo "information as placeholder text. Please replace that info with your own"
-echo "and delete these echo and exit commands before running again"
+echo "and delete these echo and exit commands before running script again"
 exit 1
 
 # this is the name of the repository you created on github for your assignment
