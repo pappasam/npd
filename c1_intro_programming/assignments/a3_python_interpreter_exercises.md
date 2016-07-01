@@ -1,7 +1,7 @@
 # Bash Exercises
 
-Bash commands can be placed into files where the first line is called a
-"shebang" and is of the form:
+Bash commands can be placed into files called scripts where the first line is
+called a "shebang" and is of the form:
 
     #!/bin/bash
 
@@ -10,17 +10,17 @@ This tells the shell when executing a file to use the program located at
 
 ## Assignment
 
-Create two script files `save_task.sh` and `tasks.sh` that perform like the
+Create two script files `save_task.sh` and `list_tasks.sh` that perform like the
 following:
 
 ```bash
-$ ./tasks.sh
+$ ./list_tasks.sh
 $ ./save_task.sh "return library books"
-$ ./tasks.sh
+$ ./list_tasks.sh
 return library books
 $ ./save_task.sh "learn programming"
 $ ./save_task.sh "pick up the milk"
-$ ./tasks.sh
+$ ./list_tasks.sh
 return library books
 learn programming
 pick up the milk
@@ -30,19 +30,19 @@ We will break down the problem into several steps.
 
 ### Create the scripts
 
-In bash clone intro-programming if it doesn't exist, and use mkdir to make
+In bash use `git clone` to get intro-programming if it doesn't exist, and use mkdir to make
 assignment_3 if that hasn't been created yet. Next perform the following
 commands:
 
 ```bash
 cd ~/intro-programming/assignment_3
 echo "#!/bin/bash" > save_task.sh
-echo "#!/bin/bash" > tasks.sh
+echo "#!/bin/bash" > list_tasks.sh
 chmod +x save_task.sh
-chmod +x tasks.sh
+chmod +x list_tasks.sh
 ```
 
-Now both tasks are executable, though they perform no commands. Use vim to
+Now both scripts are executable, though they perform no commands. Use vim to
 inspect their contents, then exit with `:q`.
 
 ### Listing Tasks
@@ -66,7 +66,7 @@ Press <escape> to make sure you're in normal mode, then `:wq` to save and quit
 out of vim. Now use vim to edit the script to list the tasks:
 
 ```bash
-vim tasks.sh
+vim list_tasks.sh
 ```
 
 And now the contents for this file should be:
@@ -91,7 +91,7 @@ type it or the lines without it:
 ```bash
 $ ./save_task.sh
 $ ./save_task.sh
-$ ./tasks.sh
+$ ./list_tasks.sh
 think of a sample task
 think of a sample task
 ```
