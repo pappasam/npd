@@ -8,6 +8,29 @@ called a "shebang" and is of the form:
 This tells the shell when executing a file to use the program located at
 /bin/bash to interpret the text.
 
+## Setup
+
+If you haven't already, clone the course site into your home directory. The
+`-b` option here causes the `git clone` command to check out the `C1` branch,
+which we do because that is where our current course lives. The final argument
+places the repository within the home directory in a project directory at
+`~/intro-course`, since that is slightly more readable than npd.
+
+    git clone -b C1 https://github.com/pappasam/npd.git ~/intro-course
+    cd ~/intro-course
+    chmod +x c1_intro_programming/scripts/course_setup.sh
+
+    # don't run next line until you update the script with your git information
+    c1_intro_programming/scripts/course_setup.sh
+
+After you update the script downloaded in the course resources repository and
+run it you should have your assignment repo cloned and the assignment_3
+directory created for you if it does not exist.
+
+This would be a good script to examine, spend a bit of time trying to understand out
+how it works before moving on.
+
+
 ## Assignment
 
 Create two script files `save_task.sh` and `list_tasks.sh` that perform like the
@@ -30,9 +53,9 @@ We will break down the problem into several steps.
 
 ### Create the scripts
 
-In bash use `git clone` to get intro-programming if it doesn't exist, and use mkdir to make
-assignment_3 if that hasn't been created yet. Next perform the following
-commands:
+Use `cd` to change directories into your assignment_3 directory. Then create
+each script starting with it's shebang using output redirection. Finally use
+chmod to make them executable.
 
 ```bash
 cd ~/intro-programming/assignment_3
@@ -42,8 +65,8 @@ chmod +x save_task.sh
 chmod +x list_tasks.sh
 ```
 
-Now both scripts are executable, though they perform no commands. Use vim to
-inspect their contents, then exit with `:q`.
+Though executable, both scripts perform no commands. Use vim to inspect their
+contents, then exit with `:q`.
 
 ### Listing Tasks
 
