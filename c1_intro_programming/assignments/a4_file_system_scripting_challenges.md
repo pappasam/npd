@@ -1,5 +1,15 @@
 # File System Scripting
 
+Python is a high-level, dynamic, interpreted programming language, as wikipedia
+says. It is a sophisticated tool for directing computer hardware to perform some
+action that we want, with enough conceptual abstraction so that mere mortals can
+understand understand the instructions.
+
+Installing Python puts an program on your machine that is able to read text
+structured in the python syntax. If you invoke `python` from the command line
+without arguments it will parse one line at a time and execute it, or it can
+execute all the commands in a file known as a module.
+
 Scripting gets its name from the fact that you can write commands in the file
 and point and interpreter at that file to dynamically run through and execute
 them.

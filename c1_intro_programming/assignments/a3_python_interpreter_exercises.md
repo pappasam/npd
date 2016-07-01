@@ -1,46 +1,157 @@
-# Python Interpreter Exercises
+# Bash Exercises
 
-Python is a high-level, dynamic, interpreted programming language, as wikipedia
-says. It is a sophisticated tool for directing computer hardware to perform some
-action that we want, with enough conceptual abstraction so that mere mortals can
-understand understand the instructions.
+Bash commands can be placed into files where the first line is called a
+"shebang" and is of the form:
 
-Installing Python puts an program on your machine that is able to read text
-structured in the python syntax. If you invoke `python` from the command line
-without arguments it will parse one line at a time and execute it, or it can
-execute all the commands in a file known as a module.
+    #!/bin/bash
 
-## Setup
-
-Install the python version 3.4 interpreter, and the bpython wrapper system.
-
-    sudo apt-get install python3.4
-    sudo apt-get install bpython
+This tells the shell when executing a file to use the program located at
+/bin/bash to interpret the text.
 
 ## Assignment
 
-### Python Usage
+Create two script files `save_task.sh` and `tasks.sh` that perform like the
+following:
 
-**Follow the demonstrations in class to perform some example python computation.
-Once completed use bpython's save feature to record your
-command history and save it into
-`~/intro-programming/assignment_2/python_history.py`.**
+```bash
+$ ./tasks.sh
+$ ./save_task.sh "return library books"
+$ ./tasks.sh
+return library books
+$ ./save_task.sh "learn programming"
+$ ./save_task.sh "pick up the milk"
+$ ./tasks.sh
+return library books
+learn programming
+pick up the milk
+```
 
-Run bpython and experiment with these assignments. You can save your command
-history for submission through the interface.
+We will break down the problem into several steps.
 
-### Create a workspace
+### Create the scripts
 
-Within the bpython interpreter use the `os` module for (3) taskss:
+In bash clone intro-programming if it doesn't exist, and use mkdir to make
+assignment_3 if that hasn't been created yet. Next perform the following
+commands:
 
-1. Get your current working directory with `os.getcwd`.
-2. If you are not already in your home directory, us `os.chdir` to update your
-currentworking directory to that location.
-3. Create a directory to create a directory called `python-exercises` and change
-directories into it with another `os` invocation.
+```bash
+cd ~/intro-programming/assignment_3
+echo "#!/bin/bash" > save_task.sh
+echo "#!/bin/bash" > tasks.sh
+chmod +x save_task.sh
+chmod +x tasks.sh
+```
 
-### Read and Write
+Now both tasks are executable, though they perform no commands. Use vim to
+inspect their contents, then exit with `:q`.
 
-Open a file and write some string to it. Close the interpreter and examine the
-file with vim. Reopen `bpython` and return to your exercise folder if necessary.
-Read the file contents into a variable the print that variable.
+### Listing Tasks
+
+From bash use vim to edit `save_task.sh`:
+
+```bash
+vim save_task.sh
+```
+
+Make the contents match the following:
+
+```bash
+#!/bin/bash
+
+newTask="think of a sample task"
+echo $newTask >> ~/task_database.txt
+```
+
+Press <escape> to make sure you're in normal mode, then `:wq` to save and quit
+out of vim. Now use vim to edit the script to list the tasks:
+
+```bash
+vim tasks.sh
+```
+
+And now the contents for this file should be:
+
+```bash
+#!/bin/bash
+cat ~/task_database.txt 
+```
+
+By appending a string to a file using the `echo` command you can store tasks one
+per line. 
+
+From now on if you are asked to edit a file you should enter the command `vim
+<filename>`, use the commands you learned in vimtutor to edit the text, then
+quit by pressing <escape> to make sure you're in normal mode, then `:wq` to
+save and quit.
+
+The following is an example of how the commands should function once your files
+match the examples. Only input the lines starting with the `$` symbol, but don't
+type it or the lines without it:
+
+```bash
+$ ./save_task.sh
+$ ./save_task.sh
+$ ./tasks.sh
+think of a sample task
+think of a sample task
+```
+
+### Expanding Variables
+
+Edit `save_tasks.sh` with vim and add the following lines:
+
+```bash
+newTask="when you see this the task text has been expanded"
+
+# double quotes are expanded, single are not
+echo $newTask
+echo "$newTask"
+echo '$newTask'
+```
+
+Experiment with this file by making small changes and saving with vim, then
+executing the file again as in the example above with `./save_task.sh`. You
+should understand what a variable is and how it gets replaced with its contents.
+
+### Command Line Arguments
+
+When bash starts a script it automatically sets several variables for you, one
+example is the positional argument set. Here are some comands that prints the first 3
+arguments with each one seperated by a row of symbols, add them to
+`save_tasks.sh` after the lines of from the "Expanding Variables" section.
+
+```bash
+echo "------------"
+echo "first arg: $1"
+echo "============"
+echo "first arg: $2"
+echo "============"
+echo "first arg: $3"
+```
+
+Now experiment with different arguments. Here are some examples to get you
+started:
+
+```bash
+./save_tasks first "second" "eleventy one"
+```
+
+### Final Product
+
+Finally use vim to replace the newTask definition line in `save_tasks.sh`:
+
+```bash
+newTask=$1
+echo "$newTask"
+```
+
+At this point the script should behave as outlined in the first section. Commit
+your changes and push them:
+
+    cd ~/intro-programming
+    git add assignment_3
+    git commit -m "adding task script"
+    git push
+
+You should be able to find your script on Github.
+
