@@ -27,3 +27,4 @@ echo "gh_project=\"$gh_project\"" >> $config_file
 echo "gh_name=\"$gh_name\"" >> $config_file
 echo "gh_email=\"$gh_email\"" >> $config_file
 echo "gh_repo=\"https://github.com/$gh_user/$gh_project.git\"" >> $config_file
+echo "course_vars_loaded=\"true\"" >> $config_file

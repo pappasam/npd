@@ -7,6 +7,7 @@ fi
 source $config_file
 
 course_dir=$HOME/npd
+course_scripts=$course_dir/c1_intro_programming/scripts
 course_current_branch="C1"
 assignment_dir=$HOME/$gh_project
 
@@ -18,16 +19,24 @@ for needed_command in $command_dependencies; do
     fi
 done
 
-
 if [ ! -d $course_dir ]; then
     echo "Downloading course repo to $course_dir with branch $course_current_branch"
     git clone -b $course_current_branch https://github.com/pappasam/npd $course_dir
 fi
 
-if [ ! -d $assignment_dir/.git ]; then
+if [ ! -d $assignment_dir ]; then
     echo "Downloading your assignment repo $gh_repo to $assignment_dir"
     git clone $gh_repo $assignment_dir
 else
+    if [ ! -d $assignment_dir/.git ]; then
+        echo "The directory $assignment_dir doesn't hold a git project"
+        echo "ABORTING SETUP, FIX PROBLEM AND RERUN SETUP SCRIPT:"
+        echo ""
+        echo "    $course_scripts/course_setup.sh"
+        echo ""
+        exit 1
+
+    fi
     echo "Your assignment repo was located in $assignment_dir"
 fi
 
@@ -41,8 +50,6 @@ git config --global user.email "$gh_email"
 git config --global core.editor vim
 git config --global push.default simple
 
-# create assignment_3 dir if it doesn't exist
-if [ ! -d "$assignment_dir/assignment_3" ]; then
-    echo "Attempting to run \`mkdir assignment_3\`"
-    mkdir $assignment_dir/assignment_3
-fi
+$course_scripts/check_a1.sh
+
+cd $assignment_dir
