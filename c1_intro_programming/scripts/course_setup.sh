@@ -31,7 +31,10 @@ if [ ! -d $course_dir ]; then
     echo "Downloading course repo to $course_dir with branch $course_current_branch"
     git clone -b $course_current_branch https://github.com/pappasam/npd $course_dir
 else
-    echo "The course materials repo was found at $course_dir"
+    echo "The course materials repo was found at $course_dir, pulling..."
+    pushd $course_dir
+    git pull
+    popd
 fi
 
 if [ ! -d $course_assignments ]; then
@@ -47,6 +50,7 @@ else
         exit 1
 
     fi
+
     echo "Your assignment repo was located in $course_assignments"
 fi
 
