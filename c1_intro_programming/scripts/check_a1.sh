@@ -20,7 +20,6 @@ if [ ! -d "$thisAssignment" ]; then
     exit 1
 fi
 
-echo "Looking for files meant to be generated in assignment 1"
 passing="true"
 missing_subdirs=""
 missing_counter=0

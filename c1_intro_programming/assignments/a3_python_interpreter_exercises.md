@@ -73,7 +73,8 @@ From bash use vim to edit `save_task.sh`:
 vim save_task.sh
 ```
 
-Make the contents match the following:
+By appending a string to a file using the `echo` command you can store tasks one
+per line.  Make the contents of `save_task.sh` match the following:
 
 ```bash
 #!/bin/bash
@@ -89,15 +90,16 @@ out of vim. Now use vim to edit the script to list the tasks:
 vim list_tasks.sh
 ```
 
-And now the contents for this file should be:
+This script merely uses a conditional to cat the database file only if it exists.
+The contents for this file should be:
 
 ```bash
 #!/bin/bash
-cat ~/task_database.txt 
-```
 
-By appending a string to a file using the `echo` command you can store tasks one
-per line. 
+if [ -f ~/task_database.txt ]; then
+    cat ~/task_database.txt
+fi
+```
 
 From now on if you are asked to edit a file you should enter the command `vim
 <filename>`, use the commands you learned in vimtutor to edit the text, then

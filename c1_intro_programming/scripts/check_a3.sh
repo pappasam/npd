@@ -58,11 +58,8 @@ if [ -f $db_file ]; then
     rm $db_file
 fi
 
-echo 
 output=$($list_cmd)
-if [ -z $output ]; then
-    echo "empty output, as expected"
-else
+if [ -n "$output" ]; then
     passing="false"
     echo "Listing tasks with none saved should have empty output"
     echo "instead found: |$output|"
@@ -76,19 +73,20 @@ if [ "$output" != "$expected_output" ]; then
     echo "Didnt get expected output: |$expected_output|"
     echo "Instead got: |$output|"
     passing="false"
-else
-    echo "Got expected single task output..."
 fi
 
 $add_cmd "learn programming"
 $add_cmd "pick up the milk"
 output=$($list_cmd)
+expected_output="return library books
+learn programming
+pick up the milk"
 
-#if [ "$output" != "return library books" ]; then
-    # 'return library books'
-    # 'learn programming'
-    # 'pick up the milk'
-#fi
+if [ "$output" != "$expected_output" ]; then
+    passing="false"
+    echo "Didnt get expected output: |$expected_output|"
+    echo "Instead got: |$output|"
+fi
 
 
 if [ "$passing" != "true" ]; then
@@ -99,6 +97,7 @@ else
 fi
 
 # restore original db from before test
+rm $db_file
 if [ -f $db_file.bak ]; then
     mv $db_file.bak $db_file 
 fi
