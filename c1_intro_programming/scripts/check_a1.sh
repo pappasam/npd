@@ -21,7 +21,7 @@ if [ ! -d "$thisAssignment" ]; then
 fi
 
 echo "Looking for files meant to be generated in assignment 1"
-passed="true"
+passing="true"
 missing_subdirs=""
 missing_counter=0
 root_subdirs="bin boot dev etc lib media mnt opt sbin srv tmp usr var"
@@ -29,7 +29,7 @@ for subdir in $root_subdirs; do
     target_file="$thisAssignment/$subdir-contents.txt"
 
     if [ ! -f $target_file ]; then
-        if [ $passed = "true" ]; then
+        if [ $passing = "true" ]; then
             echo
             echo "Expected to find contents of /$subdir in"
             echo "$target_file, but the file was not found"
@@ -40,17 +40,17 @@ for subdir in $root_subdirs; do
             echo
         fi
         missing_subdirs="$subdir $missing_subdirs"
-        passed="false"
+        passing="false"
         ((missing_counter++))
     fi
 done
 
-if [ $passed = "false" ]; then
+if [ $passing = "false" ]; then
     echo "Missing \"*-contents.txt\" files for the following root subdirectories:"
     echo "$missing_subdirs"
     echo "There are $missing_counter missing files"
     echo
 else
-    echo "COMPLETED: Assignment 1"
+    echo "COMPLETED: Assignment $assignment_index"
 fi 
 

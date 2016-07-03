@@ -16,12 +16,9 @@ which we do because that is where our current course lives. The final argument
 places the repository within the home directory in a project directory at
 `~/intro-course`, since that is slightly more readable than npd.
 
-    git clone -b C1 https://github.com/pappasam/npd.git ~/intro-course
-    cd ~/intro-course
-    chmod +x c1_intro_programming/scripts/course_setup.sh
-
-    # don't run next line until you update the script with your git information
-    c1_intro_programming/scripts/course_setup.sh
+    cd ~
+    git clone -b C1 https://github.com/pappasam/npd.git
+    ~/npd/c1_intro_programming/scripts/course_setup.sh
 
 After you update the script downloaded in the course resources repository and
 run it you should have your assignment repo cloned and the assignment_3
@@ -30,13 +27,13 @@ directory created for you if it does not exist.
 This would be a good script to examine, spend a bit of time trying to understand out
 how it works before moving on.
 
-
 ## Assignment
 
 Create two script files `save_task.sh` and `list_tasks.sh` that perform like the
 following:
 
 ```bash
+$ cd ~/intro-programming/assignment_3
 $ ./list_tasks.sh
 $ ./save_task.sh "return library books"
 $ ./list_tasks.sh

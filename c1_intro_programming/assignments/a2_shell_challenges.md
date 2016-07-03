@@ -99,9 +99,7 @@ the URL would look like for the sample repository I created in class.
 ### Anatomy of a Command Line
 
 Follow in-class discussion on the command prompt, answer the following questions
-to demonstrate your understanding of the structure of a command line. This
-exercise will take the form of writing answers in a file
-`~/intro-programming/assignment_2/commands.md`.
+to demonstrate your understanding of the structure of a command line.
 
     ls -l ~/intro-programming
 
@@ -122,16 +120,21 @@ use vim to inspect the files on your machine.
 If trying to run `wget` results in an error, run `sudo apt-get install wget` and
 double check the URL.
 
-**Create a new file at `~/intro-programming/assignment_2/downloads.md`, use vim
-to record the URLs you downloaded and any questions or observations you had
-about what you found in the file.**
+**Make sure your current directory is the assignment subdirectory, then download
+a few files with `wget`. Download the files at the following URLs, results
+should named `index.html` and `vimrc_minimum`.**
 
-1. The non-file URL of a website page. Open the resulting source file with vim
-and see what your browser receives and parses into the webpage.
-2. A configuration file for Vim. If you have no preference, use the following
-suggested minimal python focused vimrc:
+    cd ~/intro-programming/assignment_2/
+    wget www.google.com
+    wget https://raw.githubusercontent.com/pappasam/configsettings/master/vimrc_minimum
 
-    https://raw.githubusercontent.com/pappasam/configsettings/master/vimrc_minimum
+You are encouraged to download other files for inspection to learn more about
+web files but only the above two examples need to be staged and commited for
+credit:
+
+    git add index.html vimrc_minimum
+    git commit -m "adding download samples for assignemnt 2"
+    git push
 
 If you looking at a file on the Github web view you can get a download URL by
 going to a github page displaying a vimrc file and using the context menu to

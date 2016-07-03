@@ -51,5 +51,7 @@ else
 fi
 
 $course_scripts/check_a1.sh
+$course_scripts/check_a2.sh
+$course_scripts/check_a3.sh
 
 cd $assignment_dir
