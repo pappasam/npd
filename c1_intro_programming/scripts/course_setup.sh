@@ -1,35 +1,48 @@
 #!/bin/bash
 
-echo "UNMODIFIED SCRIPT: this script has been written with instructor's"
-echo "information as placeholder text. Please replace that info with your own"
-echo "and delete these echo and exit commands before running script again"
-exit 1
+config_file=$HOME/course_vars.cfg
+if [ ! -f $config_file ]; then
+    ./set_vars.sh
+fi
+source $config_file
 
-# this is the name of the repository you created on github for your assignment
-gitProject="intro-programming"
+course_dir=$HOME/npd
+course_current_branch="C1"
+assignment_dir=$HOME/$gh_project
 
-# the username for the account you created on github
-gitUser="boombador"
+command_dependencies="git tmux vim"
+for needed_command in $command_dependencies; do
+    if ! hash "$needed_command" >/dev/null 2>&1; then
+        printf "Installing missing command: %s\n" "$needed_command" >&2
+        sudo apt-get install $needed_command --assume-yes
+    fi
+done
 
-# this combines the earlier two variables in the URL for git commands
-gitRepo="https://github.com/$gitUser/$gitProject.git"
 
-# replace instructor information with your own before running script
-git config --global user.name "Ian McLaughlin"
-git config --global user.email im60@nyu.edu
+if [ ! -d $course_dir ]; then
+    echo "Downloading course repo to $course_dir with branch $course_current_branch"
+    git clone -b $course_current_branch https://github.com/pappasam/npd $course_dir
+fi
 
-# these will silence some errors and use our familiar vim by default
+if [ ! -d $assignment_dir/.git ]; then
+    echo "Downloading your assignment repo $gh_repo to $assignment_dir"
+    git clone $gh_repo $assignment_dir
+else
+    echo "Your assignment repo was located in $assignment_dir"
+fi
+
+# write configuration files that tell github your public info
+# the --global flag says to store this information in your home directory
+git config --global user.name "$gh_name"
+git config --global user.email "$gh_email"
+
+# these settings establish some sensible defaults
+# like using vim for editing and only pushing your active branch
 git config --global core.editor vim
 git config --global push.default simple
 
-# make sure git project is checked out
-if [ ! -d "$HOME/$gitProject" ]; then
-    cd $HOME
-    git clone $gitRepo
-fi
-
 # create assignment_3 dir if it doesn't exist
-if [ ! -d "$HOME/$gitProject/assignment_3" ]; then
+if [ ! -d "$assignment_dir/assignment_3" ]; then
     echo "Attempting to run \`mkdir assignment_3\`"
-    mkdir $HOME/$gitProject/assignment_3
+    mkdir $assignment_dir/assignment_3
 fi
