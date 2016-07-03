@@ -319,3 +319,140 @@ template: extend-classes
   * Create a Mix-In class that implements the ability to convert an inheriting class to JSON.
     * Mix-In should implement the method `to_json` that returns a json string of the object.
   * Apply this Mix-In class to your extended Python dictionary to enable your dictionary to return a JSON version of itself when the `to_json` method is called.
+
+---
+
+layout: true
+name: metaclasses
+
+# MetaClasses
+
+---
+
+layout: true
+template: metaclasses
+name: type-object
+
+## The Python Type Object
+
+---
+
+  * The `type` function does more than just show an instance's type.
+  * The `type` object can actually construct a completely new class.
+
+```python ((ex13.py))
+```
+
+--
+
+```python <<ex13.py>>
+```
+
+---
+
+  * The `type` function (like all other functions in Python) is an object.
+    * It can be inherited.
+  * A class that inherits `type` is now a metaclass.
+    * Metaclasses can do special things to classes as they are defined.
+
+---
+
+layout: true
+template: metaclasses
+name: metaclass-magic
+
+## MetaClass Magic
+
+---
+
+layout: true
+template: metaclass-magic
+
+  * MetaClasses can alter the usual behavior of normal Python classes to perform some interesting things.
+  * E.g. a class registry.
+
+---
+
+```python ((ex14.py))
+```
+
+---
+
+```python <<ex14.py>>
+```
+
+--
+
+  * Why would a class registry be useful?
+    * Dynamic class loading.
+
+```python ((ex15.py))
+```
+
+--
+
+```python <<ex15.py>>
+```
+
+---
+
+template: metaclasses
+
+## Python 2.X Versus Python 3.X Syntax
+
+  * The previous example uses Python 2.X.
+    * For Python 3.x, the syntax differs slightly.
+
+```python
+MyType(type):
+  pass
+
+MyClass(object, metaclass=MyType):
+  #Metaclass is defined as a keyword in the class declaration
+  #instead of the __metaclass__ attribute.
+  pass
+```
+
+---
+
+layout: true
+template: metaclasses
+name: metaclass-magic-2
+
+## More MetaClass Magic
+
+  * We can change the actual behavior of classes and their attributes.
+
+---
+
+```python ((ex16_inc.py))
+```
+
+---
+
+```python ((ex16_inc2.py))
+```
+
+---
+
+```python ((ex16.py))
+```
+
+---
+
+```python <<ex16.py>>
+```
+
+---
+
+template: metaclasses
+
+## Excercise
+
+  * Start building your data model.
+    * Inherit from your existing dictionary class for each type in your data model.
+    * Apply a metaclass to your dictionary object to automatically register each type in a global registry.
+  * Improve JSON Mix-In to be type aware.
+    * When creating JSON, have the Mix-In add a special type attribute defining the type if the class is found in the registry.
+  * Implement a static JSON loading function.
+    * If the type attribute is found in the JSON data, the function should dynamically instantiate the correct type from the registry.

@@ -671,6 +671,268 @@ template: extend-classes
     * Mix-In should implement the method `to_json` that returns a json string of the object.
   * Apply this Mix-In class to your extended Python dictionary to enable your dictionary to return a JSON version of itself when the `to_json` method is called.
 
+---
+
+layout: true
+name: metaclasses
+
+# MetaClasses
+
+---
+
+layout: true
+template: metaclasses
+name: type-object
+
+## The Python Type Object
+
+---
+
+  * The `type` function does more than just show an instance's type.
+  * The `type` object can actually construct a completely new class.
+
+```python
+#The following is equivalent to
+#class inline_class(object):
+#  attr = 4
+#  def method(self):
+#    return self.attr
+inline_class = type('inline_class', (), {'attr': 4, 'method': lambda self: self.attr})
+
+print 'inline_class: %r' % inline_class
+
+inst = inline_class()
+print 'method return: %s' % inst.method()
+```
+
+--
+
+```python
+>>> inline_class: <class '__main__.inline_class'>
+>>> method return: 4
+```
+
+---
+
+  * The `type` function (like all other functions in Python) is an object.
+    * It can be inherited.
+  * A class that inherits `type` is now a metaclass.
+    * Metaclasses can do special things to classes as they are defined.
+
+---
+
+layout: true
+template: metaclasses
+name: metaclass-magic
+
+## MetaClass Magic
+
+---
+
+layout: true
+template: metaclass-magic
+
+  * MetaClasses can alter the usual behavior of normal Python classes to perform some interesting things.
+  * E.g. a class registry.
+
+---
+
+```python
+registry = {}
+
+class Registry(type):
+
+  def __new__(cls, name, bases, dct):
+    _class = super(Registry, cls).__new__(cls, name, bases, dct)
+    registry[name] = _class
+    return _class
+
+class A(object):
+  __metaclass__ = Registry
+
+class B(A):
+  pass
+
+class C(A):
+  pass
+
+print 'registry: %r' % registry
+```
+
+---
+
+```python
+>>> registry: {'A': <class '__main__.A'>, 'C': <class '__main__.C'>, 'B': <class '__main__.B'>}
+```
+
+--
+
+  * Why would a class registry be useful?
+    * Dynamic class loading.
+
+```python
+from ex14 import registry
+
+for i in ('A', 'B', 'C'):
+  inst = registry.get(i, lambda: None)()
+  print 'inst: %r' % inst
+```
+
+--
+
+```python
+>>> registry: {'A': <class 'ex14.A'>, 'C': <class 'ex14.C'>, 'B': <class 'ex14.B'>}
+>>> inst: <ex14.A object at 0xb71e924c>
+>>> inst: <ex14.B object at 0xb71e92cc>
+>>> inst: <ex14.C object at 0xb71e924c>
+```
+
+---
+
+template: metaclasses
+
+## Python 2.X Versus Python 3.X Syntax
+
+  * The previous example uses Python 2.X.
+    * For Python 3.x, the syntax differs slightly.
+
+```python
+MyType(type):
+  pass
+
+MyClass(object, metaclass=MyType):
+  #Metaclass is defined as a keyword in the class declaration
+  #instead of the __metaclass__ attribute.
+  pass
+```
+
+---
+
+layout: true
+template: metaclasses
+name: metaclass-magic-2
+
+## More MetaClass Magic
+
+  * We can change the actual behavior of classes and their attributes.
+
+---
+
+```python
+class SetAttrs(type):
+
+  def __new__(cls, name, bases, dct):
+    new_dct = {}
+    for attr, val in dct.items():
+      if isinstance(val, list):
+        new_val = val[:]
+        for base in bases:
+          if isinstance(getattr(base, attr, None), (tuple, list)):
+            new_val.extend(getattr(base, attr, None))
+      elif isinstance(val, dict):
+        new_val = val.copy()
+        for base in bases:
+          if isinstance(getattr(base, attr, None), dict):
+            new_val = dict(getattr(base, attr, None), **new_val)
+      elif isinstance(val, set):
+        new_val = val.copy()
+        for base in bases:
+          if isinstance(getattr(base, attr, None), (tuple, list, set)):
+            new_val.update(getattr(base, attr, None))
+      else:
+        new_val = val
+      new_dct[attr] = new_val
+    return super(SetAttrs, cls).__new__(cls, name, bases, new_dct)
+```
+
+---
+
+```python
+from ex16_inc import SetAttrs
+
+class Root(object):
+  __metaclass__ = SetAttrs
+
+  a = 'an attribute'
+  b = ['data in a list']
+  c = {'a': 'an attr in a dict', 'b': 'another attr in the dict'}
+
+class Parent(Root):
+
+  a = 'an overridden attribute'
+  b = ['more data in a list']
+  c = {'b': 'an overridden attr in the dict', 'c': 'a new attr in the dict'}
+
+class SecondParent(Root):
+
+  b = ['more data']
+  d = set(('abc',))
+
+class Child(Parent, SecondParent):
+
+  c = {'d': 'an attr defined in child'}
+  d = set(('def',))
+```
+
+---
+
+```python
+from ex16_inc2 import Root, Parent, SecondParent, Child
+
+print 'Attributes in Root:'
+for i in ('a', 'b', 'c'):
+  print '%s: %r' % (i, getattr(Root, i, None))
+
+print 'Attributes in Parent:'
+for i in ('a', 'b', 'c'):
+  print '%s: %r' % (i, getattr(Parent, i, None))
+
+print 'Attributes in SecondParent:'
+for i in ('a', 'b', 'c', 'd'):
+  print '%s: %r' % (i, getattr(SecondParent, i, None))
+
+print 'Attributes in Child:'
+for i in ('a', 'b', 'c', 'd'):
+  print '%s: %r' % (i, getattr(Child, i, None))
+```
+
+---
+
+```python
+>>> Attributes in Root:
+>>> a: 'an attribute'
+>>> b: ['data in a list']
+>>> c: {'a': 'an attr in a dict', 'b': 'another attr in the dict'}
+>>> Attributes in Parent:
+>>> a: 'an overridden attribute'
+>>> b: ['more data in a list', 'data in a list']
+>>> c: {'a': 'an attr in a dict', 'c': 'a new attr in the dict', 'b': 'an overridden attr in the dict'}
+>>> Attributes in SecondParent:
+>>> a: 'an attribute'
+>>> b: ['more data', 'data in a list']
+>>> c: {'a': 'an attr in a dict', 'b': 'another attr in the dict'}
+>>> d: set(['abc'])
+>>> Attributes in Child:
+>>> a: 'an overridden attribute'
+>>> b: ['more data in a list', 'data in a list']
+>>> c: {'a': 'an attr in a dict', 'c': 'a new attr in the dict', 'b': 'an overridden attr in the dict', 'd': 'an attr defined in child'}
+>>> d: set(['abc', 'def'])
+```
+
+---
+
+template: metaclasses
+
+## Excercise
+
+  * Start building your data model.
+    * Inherit from your existing dictionary class for each type in your data model.
+    * Apply a metaclass to your dictionary object to automatically register each type in a global registry.
+  * Improve JSON Mix-In to be type aware.
+    * When creating JSON, have the Mix-In add a special type attribute defining the type if the class is found in the registry.
+  * Implement a static JSON loading function.
+    * If the type attribute is found in the JSON data, the function should dynamically instantiate the correct type from the registry.
+
 		</textarea>
 		<script>require=(function(e,t,n){function i(n,s){if(!t[n]){if(!e[n]){var o=typeof require=="function"&&require;if(!s&&o)return o(n,!0);if(r)return r(n,!0);throw new Error("Cannot find module '"+n+"'")}var u=t[n]={exports:{}};e[n][0].call(u.exports,function(t){var r=e[n][1][t];return i(r?r:t)},u,u.exports)}return t[n].exports}var r=typeof require=="function"&&require;for(var s=0;s<n.length;s++)i(n[s]);return i})({"components/printing":[function(require,module,exports){
 module.exports=require('yoGRCZ');
