@@ -1,15 +1,23 @@
 #!/bin/bash
 
-config_file=$HOME/course_vars.cfg
+config_file="$HOME/course_vars.cfg"
 if [ ! -f $config_file ]; then
-    ./set_vars.sh
+    # set_vars.sh will export variables so they can be used in this script
+    ./set_vars.sh -f $config_file
+
+    # write configuration files that tell github your public info
+    # the --global flag says to store this information in your home directory
+    git config --global user.name "$gh_name"
+    git config --global user.email "$gh_email"
+
+    # these settings establish some sensible defaults
+    # like using vim for editing and only pushing your active branch
+    git config --global core.editor vim
+    git config --global push.default simple
+else
+    echo "Parsing existing config file located at $config_file"
 fi
 source $config_file
-
-course_dir=$HOME/npd
-course_scripts=$course_dir/c1_intro_programming/scripts
-course_current_branch="C1"
-assignment_dir=$HOME/$gh_project
 
 command_dependencies="git tmux vim"
 for needed_command in $command_dependencies; do
@@ -22,14 +30,16 @@ done
 if [ ! -d $course_dir ]; then
     echo "Downloading course repo to $course_dir with branch $course_current_branch"
     git clone -b $course_current_branch https://github.com/pappasam/npd $course_dir
+else
+    echo "The course materials repo was found at $course_dir"
 fi
 
-if [ ! -d $assignment_dir ]; then
-    echo "Downloading your assignment repo $gh_repo to $assignment_dir"
-    git clone $gh_repo $assignment_dir
+if [ ! -d $course_assignments ]; then
+    echo "Downloading your assignment repo $gh_repo to $course_assignments"
+    git clone $gh_repo $course_assignments
 else
-    if [ ! -d $assignment_dir/.git ]; then
-        echo "The directory $assignment_dir doesn't hold a git project"
+    if [ ! -d $course_assignments/.git ]; then
+        echo "The directory $course_assignments doesn't hold a git project"
         echo "ABORTING SETUP, FIX PROBLEM AND RERUN SETUP SCRIPT:"
         echo ""
         echo "    $course_scripts/course_setup.sh"
@@ -37,18 +47,8 @@ else
         exit 1
 
     fi
-    echo "Your assignment repo was located in $assignment_dir"
+    echo "Your assignment repo was located in $course_assignments"
 fi
-
-# write configuration files that tell github your public info
-# the --global flag says to store this information in your home directory
-git config --global user.name "$gh_name"
-git config --global user.email "$gh_email"
-
-# these settings establish some sensible defaults
-# like using vim for editing and only pushing your active branch
-git config --global core.editor vim
-git config --global push.default simple
 
 $course_scripts/check_a1.sh
 

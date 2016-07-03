@@ -5,6 +5,7 @@ config_file=$HOME/course_vars.cfg
 while getopts "f:" flag
 do
     if [ "$flag" = "f" ]; then
+        echo "using config file: $OPTARG"
         config_file=$OPTARG
     fi
 done
@@ -22,9 +23,17 @@ read  gh_name
 echo -e "Enter the email you used when you signed up for github: \c "
 read  gh_email
 
-echo "gh_user=\"$gh_user\"" > $config_file
-echo "gh_project=\"$gh_project\"" >> $config_file
-echo "gh_name=\"$gh_name\"" >> $config_file
-echo "gh_email=\"$gh_email\"" >> $config_file
-echo "gh_repo=\"https://github.com/$gh_user/$gh_project.git\"" >> $config_file
-echo "course_vars_loaded=\"true\"" >> $config_file
+
+echo "export gh_user=\"$gh_user\"" > $config_file
+echo "export gh_project=\"$gh_project\"" >> $config_file
+echo "export gh_name=\"$gh_name\"" >> $config_file
+echo "export gh_email=\"$gh_email\"" >> $config_file
+echo "export gh_repo=\"https://github.com/$gh_user/$gh_project.git\"" >> $config_file
+
+echo 'export course_dir=$HOME/npd' >> $config_file
+echo 'export course_scripts=$course_dir/c1_intro_programming/scripts' >> $config_file
+echo 'export course_current_branch="C1"' >> $config_file
+echo 'export course_assignments=$HOME/$gh_project' >> $config_file
+echo 'export course_vars_loaded="true"' >> $config_file
+
+echo "export config_file=\"$config_file\"" >> $config_file

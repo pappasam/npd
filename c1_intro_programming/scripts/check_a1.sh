@@ -1,14 +1,19 @@
 
 if [ -z ${course_vars_loaded+x} ]; then
-    echo "Course variables have not been set, you probably need to run \"./course_setup.sh\""
-    exit 1
+    if [ -f $config_file ]; then
+        source $config_file
+    else
+        echo "Course variables have not been set, you probably need to run \"./course_setup.sh\""
+        exit 1
+    fi
 fi
 
-thisAssignment="$course_assignments/assignment_1"
+assignment_index="1"
+thisAssignment="$course_assignments/assignment_$assignment_index"
 
 # create assignment_1 dir if it doesn't exist
 if [ ! -d "$thisAssignment" ]; then
-    echo "Didn't find assignment_1 subdirectory, use following command to fix"
+    echo "Didn't find assignment_$assignment_index subdirectory, use following command to fix"
     echo
     echo "    mkdir $thisAssignment"
     echo

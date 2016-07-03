@@ -8,7 +8,7 @@ fi
 assignment_index="3"
 thisAssignment="$course_assignments/assignment_$assignment_index"
 if [ ! -d "$thisAssignment" ]; then
-    echo "Didn't find assignment_2 subdirectory, use following command to fix"
+    echo "Didn't find assignment_$assignment_index subdirectory, use following command to fix"
     echo
     echo "    mkdir $thisAssignment"
     echo
