@@ -5,19 +5,6 @@ export course_scripts="$course_dir/c1_intro_programming/scripts"
 export course_current_branch="C1"
 export course_vars_loaded="true"
 
-created_config="false"
-config_file="$HOME/course_vars.cfg"
-if [ ! -f $config_file ]; then
-    created_config="true"
-
-    # set_vars.sh will export variables so they can be used in this script
-    $course_scripts/set_vars.sh -f $config_file
-else
-    echo "Parsing existing config file located at $config_file"
-fi
-source $config_file
-export course_assignments="$HOME/$gh_project"
-
 echo "If you see errors about installing vim or git, try running: "
 echo
 echo "    sudo apt-get update --fix-missing --assume-yes"
@@ -40,6 +27,19 @@ else
     git pull
     popd
 fi
+
+created_config="false"
+config_file="$HOME/course_vars.cfg"
+if [ ! -f $config_file ]; then
+    created_config="true"
+
+    # set_vars.sh will export variables so they can be used in this script
+    $course_scripts/set_vars.sh -f $config_file
+else
+    echo "Parsing existing config file located at $config_file"
+fi
+source $config_file
+export course_assignments="$HOME/$gh_project"
 
 
 if [ "$created_config" = "true" ]; then
