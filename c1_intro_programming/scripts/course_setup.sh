@@ -1,25 +1,14 @@
 #!/bin/bash
 
-config_file="$HOME/course_vars.cfg"
-if [ ! -f $config_file ]; then
-    # set_vars.sh will export variables so they can be used in this script
-    ./set_vars.sh -f $config_file
 
-    # write configuration files that tell github your public info
-    # the --global flag says to store this information in your home directory
-    git config --global user.name "$gh_name"
-    git config --global user.email "$gh_email"
+export course_dir="$HOME/npd"
+export course_scripts="$course_dir/c1_intro_programming/scripts"
+export course_current_branch="C1"
+export course_assignments="$HOME/$gh_project"
+export course_vars_loaded="true"
 
-    # these settings establish some sensible defaults
-    # like using vim for editing and only pushing your active branch
-    git config --global core.editor vim
-    git config --global push.default simple
-else
-    echo "Parsing existing config file located at $config_file"
-fi
-source $config_file
-
-command_dependencies="git tmux vim"
+sudo apt-get update --fix-missing --assume-yes
+command_dependencies="git vim"
 for needed_command in $command_dependencies; do
     if ! hash "$needed_command" >/dev/null 2>&1; then
         printf "Installing missing command: %s\n" "$needed_command" >&2
@@ -31,10 +20,36 @@ if [ ! -d $course_dir ]; then
     echo "Downloading course repo to $course_dir with branch $course_current_branch"
     git clone -b $course_current_branch https://github.com/pappasam/npd $course_dir
 else
-    echo "The course materials repo was found at $course_dir, pulling..."
+    echo "The course materials repo was found at $course_dir, pulling any recent changes..."
     pushd $course_dir
     git pull
     popd
+fi
+
+created_config="false"
+config_file="$HOME/course_vars.cfg"
+if [ ! -f $config_file ]; then
+    created_config="true"
+
+    # set_vars.sh will export variables so they can be used in this script
+    ./set_vars.sh -f $config_file
+else
+    echo "Parsing existing config file located at $config_file"
+fi
+source $config_file
+
+if [ "$created_config" = "true" ]; then
+    echo "Updating your git settings: \"$gh_name\" <$gh_email>"
+
+    # write configuration files that tell github your public info
+    # the --global flag says to store this information in your home directory
+    git config --global user.name "$gh_name"
+    git config --global user.email "$gh_email"
+
+    # these settings establish some sensible defaults
+    # like using vim for editing and only pushing your active branch
+    git config --global core.editor vim
+    git config --global push.default simple
 fi
 
 if [ ! -d $course_assignments ]; then

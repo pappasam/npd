@@ -30,10 +30,4 @@ echo "export gh_name=\"$gh_name\"" >> $config_file
 echo "export gh_email=\"$gh_email\"" >> $config_file
 echo "export gh_repo=\"https://github.com/$gh_user/$gh_project.git\"" >> $config_file
 
-echo 'export course_dir=$HOME/npd' >> $config_file
-echo 'export course_scripts=$course_dir/c1_intro_programming/scripts' >> $config_file
-echo 'export course_current_branch="C1"' >> $config_file
-echo 'export course_assignments=$HOME/$gh_project' >> $config_file
-echo 'export course_vars_loaded="true"' >> $config_file
-
 echo "export config_file=\"$config_file\"" >> $config_file
