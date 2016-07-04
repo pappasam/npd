@@ -1,13 +1,28 @@
 #!/bin/bash
 
-
 export course_dir="$HOME/npd"
 export course_scripts="$course_dir/c1_intro_programming/scripts"
 export course_current_branch="C1"
-export course_assignments="$HOME/$gh_project"
 export course_vars_loaded="true"
 
-sudo apt-get update --fix-missing --assume-yes
+created_config="false"
+config_file="$HOME/course_vars.cfg"
+if [ ! -f $config_file ]; then
+    created_config="true"
+
+    # set_vars.sh will export variables so they can be used in this script
+    $course_scripts/set_vars.sh -f $config_file
+else
+    echo "Parsing existing config file located at $config_file"
+fi
+source $config_file
+export course_assignments="$HOME/$gh_project"
+
+echo "If you see errors about installing vim or git, try running: "
+echo
+echo "    sudo apt-get update --fix-missing --assume-yes"
+echo
+
 command_dependencies="git vim"
 for needed_command in $command_dependencies; do
     if ! hash "$needed_command" >/dev/null 2>&1; then
@@ -26,17 +41,6 @@ else
     popd
 fi
 
-created_config="false"
-config_file="$HOME/course_vars.cfg"
-if [ ! -f $config_file ]; then
-    created_config="true"
-
-    # set_vars.sh will export variables so they can be used in this script
-    ./set_vars.sh -f $config_file
-else
-    echo "Parsing existing config file located at $config_file"
-fi
-source $config_file
 
 if [ "$created_config" = "true" ]; then
     echo "Updating your git settings: \"$gh_name\" <$gh_email>"
@@ -49,9 +53,10 @@ if [ "$created_config" = "true" ]; then
     # these settings establish some sensible defaults
     # like using vim for editing and only pushing your active branch
     git config --global core.editor vim
-    git config --global push.default simple
+    # git config --global push.default current
 fi
 
+echo "Check that $course_assignments exists and has a .git repo"
 if [ ! -d $course_assignments ]; then
     echo "Downloading your assignment repo $gh_repo to $course_assignments"
     git clone $gh_repo $course_assignments
