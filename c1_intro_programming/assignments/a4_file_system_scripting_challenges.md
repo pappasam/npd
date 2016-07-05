@@ -1,7 +1,18 @@
 # File System Scripting
 
+Python is a high-level, dynamic, interpreted programming language. It is a
+sophisticated tool for directing computer hardware to perform some action that
+we want, with enough conceptual abstraction so that we can understand the
+instructions.
 
-## Compiled Languages and Summary
+Installing Python puts a program on your machine that is able to read text
+structured in the python syntax. If you invoke `python` from the command line
+without arguments it will parse one line at a time and execute it, or it can
+execute all the commands in a file known as a module.
+
+Scripting gets its name from the fact that you can write commands in the file
+and point the interpreter at that file to dynamically run through and execute
+them.
 
 All commands in the rest of this assignment are assumed to be run from the
 appropriate subdirectory:
@@ -20,7 +31,7 @@ version of the script and execute it directly:
     wget https://raw.githubusercontent.com/pappasam/npd/C1/c1_intro_programming/scripts/course_setup.sh
     bash course_setup.sh
 
-### Hello World in C
+## Hello World in C
 
 Use vim to open a file `hello.c` and add the following text by entering insert
 mode with the `i` key and typing out or copy pasting this text:
@@ -28,7 +39,7 @@ mode with the `i` key and typing out or copy pasting this text:
 ```c
 #include <stdio.h>
 int main(void) {
-    printf("hello, world\n");
+    printf("Hello World\n");
     return 0;
 }
 ```
@@ -48,7 +59,7 @@ the assignment.
 Look at the intermediate files that were also generated to get a better
 understanding of the multiple steps in the compilation process.
 
-### Optional: Build Loop Program in 3 Languages
+## Optional: Build Loop Program in 3 Languages
 
 Put the following in a file named `loop.sh`
 
@@ -103,76 +114,117 @@ for i in range(10):
     print(i)
 ```
 
-Then when your python virtualenv is activated you can run:
+The next section will cover how to set up your python environment, but you could
+try the following command to use the default python interpreter. If it doesn't
+execute properly try again after following the instructions in the next section.
 
     python loop.py
 
+### Python Setup
 
-#### OLD STUFF
+From within the `assignment_4` subdirectory` create a new virtual environment.
+
+    # only create VENV if it doesn't exist already
+    python3 -m venv VENV
+
+If you get an error saying that python3 doesn't exist, follow these steps to
+download, compile the source, and install the executable. The `configure` and
+`make` commands will likely take a while to complete and generate a large amount
+of output that won't make much sense to you yet.
+
+```bash
+cd /home/vagrant/
+sudo wget https://www.python.org/ftp/python/3.4.1/Python-3.4.1.tar.xz
+sudo tar -xvf Python-3.4.1.tar.xz
+cd Python-3.4.1
+sudo ./configure
+make
+sudo make install
+```
+
+Now you can try the earlier command to create the `VENV` directory. It will
+contain scripts and executables used by this project that will be kept isolated
+from other python programs present on this machine.
+
+Activate your virtualenv like so:
+
+    source VENV/bin/activate
+
+Now if you type python without the 3 at the end, you should still get the
+interpreter for the version 3.4 that you installed earlier. If you type in
+`python` at a prompt with VENV active you should get something like the
+following:
+
+    (VENV) $ python
+    Python 3.4.1 (default, Jun 30 2016, 17:11:23)
+    [GCC 4.8.4] on linux
+    Type "help", "copyright", "credits" or "license" for more information.
+    >>>
+
+### Procedural Python
 
 
+Add the following contents to the file `save.py`. You will be able to call these
+functions to perform the intended functionality of the script very simply after
+these helper functions are defined:
+
+```python
+import os
+import sys
+
+def parseArguments(argvArray):
+    """ Since sys.argv includes the name of the script itself, we omit
+    the first element and combine the rest into a single string. Then we
+    add a newline so appended tasks won't be bunched up."""
+
+    argsAsWord = " ".join(argvArray[1:])
+    return argsAsWord + "\n"
 
 
-Python is a high-level, dynamic, interpreted programming language, as wikipedia
-says. It is a sophisticated tool for directing computer hardware to perform some
-action that we want, with enough conceptual abstraction so that mere mortals can
-understand understand the instructions.
+def saveTask(taskString):
+    """ writes passed taskString to the file database"""
 
-Installing Python puts an program on your machine that is able to read text
-structured in the python syntax. If you invoke `python` from the command line
-without arguments it will parse one line at a time and execute it, or it can
-execute all the commands in a file known as a module.
+    dbFilename = "task_database_python.txt"
+    dbPath = os.path.join( os.getenv("HOME"), dbFilename )
+    with open(dbPath, "a") as myfile:
+        myfile.write(taskString)
+```
 
-Scripting gets its name from the fact that you can write commands in the file
-and point and interpreter at that file to dynamically run through and execute
-them.
+To invoke a function you type its name followed by an opening parenthesis, then
+any arguments that it may expect, then a closing parenthesis. If it generates
+any result you can put variable and and equals sign before the function
+expression to store the result in the function. For example to parse the
+arguments automatically exposed in the `sys` module:
 
-## Assignment
+```python
+parsedTask = parseArguments(sys.argv)
+```
 
-### Vagrant Provisioning
+At this point the script is nearly complete, you just need to add one more line
+where you invoke `saveTask` with `parsedTask` as an argument. There is no need
+to save the result, we didn't define one for saveTask anyway.
 
-Your Vagrant environment is intentionally minimal with the idea that you can
-customize how the initial configuration is carried out. The most straightforward
-method is to write a `bootstrap.sh` file in the same directory as your
-Vagrantfile. This script should provide commands for provisioning a
-development or production environment for your application.
 
-- make sure that these packages are installed: git, vim
-- create any project layout as needed
-- git clone any projects that will be built and executed
-- start up any servers or testing suites as appropriate
+The listing script will be even simpler, open a file `list.py` and add the
+following contents:
 
-You can come back and refine this.
+```python
+import os
 
-### Write a shell script that will use `ifconfig` and `grep` to print out the
-lines indicating potential connection IP addresses to your VM.
+dbFilename = "task_database_python.txt"
+dbPath = os.path.join( os.getenv("HOME"), dbFilename )
+with open(dbPath, "r") as myfile:
+    dbContents = myfile.read()
+    trimmedContents = dbContents.rstrip()
+```
 
-### Log Users
+All you need to do is add one more line where you invoke the `print()` function
+with the `trimmedContents` variable. It has to be at the same level of
+indentation as the previous line where trimmedContents is declared.
 
-Write a bash script to record the output of the `w` command in a file. Run this
-occasionally to see who's on your system. Make the script more useful by
-appending to the logfile instead of overwriting.
+### Optional: Improve Python Script
 
-On your vm most of the time you should be the only active user unless some
-services are running under dedicated users. If the activity from an unknown user
-looks questionable, you may have an unwelcome guest!
-
-### Customize Your Bash
-
-Edit the file located at ~/.bashrc, affectionately referred to as your bashrc.
-Use the `alias` command and environment variables to create convenient shorthand
-commands that can make common operations require fewer keystrokes.
-
-### Use Cron to create automated dustbin
-
-Linux doesn't generally have a recycling bin, most deletion commands are meant
-to be permanent. You can use crontab to periodically execute a script that
-deletes the contents of a `scratch` directory in your home dir.
-
-### Python Potentiality
-
-Create python versions of the scripts in the above exercises, read about
-`os.environ` to interact with environment variables like in the bashrc. Don't
-bother with creating aliases.
-
+You could add some argument parsing logic to perform more complicated actions.
+For instance, you could add a priority or a due date, and write tasks to
+individual files.
 
