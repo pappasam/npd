@@ -1,5 +1,118 @@
 # File System Scripting
 
+
+## Compiled Languages and Summary
+
+All commands in the rest of this assignment are assumed to be run from the
+appropriate subdirectory:
+
+    # only run this next line if you havent created assignment_4 yet
+    mkdir ~/intro-programming/assignment_4
+    cd ~/intro-programming/assignment_4
+
+You should also run the course_setup.sh script:
+
+    ~/npd/c1_intro_programming/scripts/course_setup.sh
+
+If that command gives you an error then you should download a copy of the latest
+version of the script and execute it directly:
+
+    wget https://raw.githubusercontent.com/pappasam/npd/C1/c1_intro_programming/scripts/course_setup.sh
+    bash course_setup.sh
+
+### Hello World in C
+
+Use vim to open a file `hello.c` and add the following text by entering insert
+mode with the `i` key and typing out or copy pasting this text:
+
+```c
+#include <stdio.h>
+int main(void) {
+    printf("hello, world\n");
+    return 0;
+}
+```
+
+Now you can either write your own Makefile based on the instructions from class,
+or copy the pre-saved Makefile like so:
+
+    cp ~/npd/c1_intro_programming/scripts/a4_Makefile ~/intro-programming/assignment_4/Makefile
+
+At this point if you are able to run make and compile your source without
+receiving any errors you will pass the requirements for the C-related part of
+the assignment.
+
+    make
+    ./hello
+
+Look at the intermediate files that were also generated to get a better
+understanding of the multiple steps in the compilation process.
+
+### Optional: Build Loop Program in 3 Languages
+
+Put the following in a file named `loop.sh`
+
+```bash
+#print 1-10 on separate lines
+for i in $(seq 10); do
+    echo "$i"
+done
+```
+
+Build and run by changing the execute permissions and invoking:
+
+```bash
+chmod +x loop.sh
+./loop.sh
+```
+
+To make this program in C first you need to write the source file. Open a file `loop.c` with vim:
+
+```c
+#include <stdio.h>
+
+int main(void)
+{
+    int i = 0;
+    for (i = 0; i < 10; i++) {
+        printf("Loop iteration: %d\n", i);
+    }
+    return 0;
+}
+```
+
+And add the following rule to your existing `Makefile`.
+
+```Makefile
+loop: loop.c
+	gcc -o loop loop.c
+```
+
+Now you can build and execute the loop program as follows:
+
+```bash
+make loop
+./loop
+```
+
+For Python you can add the following contents to a file called `loop.py`:
+
+```python
+#print 1-10 on separate lines
+for i in range(10):
+    print(i)
+```
+
+Then when your python virtualenv is activated you can run:
+
+    python loop.py
+
+
+#### OLD STUFF
+
+
+
+
 Python is a high-level, dynamic, interpreted programming language, as wikipedia
 says. It is a sophisticated tool for directing computer hardware to perform some
 action that we want, with enough conceptual abstraction so that mere mortals can
