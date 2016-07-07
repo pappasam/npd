@@ -110,8 +110,6 @@ changes when you are simply importing a module to get some desired functions or
 variables in your own script.
 
 ```python
-
-
 if __name__ == "__main__":
     steps = 10
     current_location = take_walk(steps)
@@ -146,9 +144,6 @@ variable:
 # add the following import statement next to the other at the top
 import sys
 
-```
-
-```python
 # find this line, it should already exist so don't add it
 if __name__ == "__main__":
     steps = 10
@@ -176,7 +171,7 @@ def take_all_walks(steps, runs):
     return endpoints
 ```
 
-Also make this update to the main functionality section at the end of the file
+Also make this update to the main functionality section at the end of the file:
 
 ```python
 # find this section, it should already exist so don't add it
@@ -190,10 +185,8 @@ if __name__ == "__main__":
     if len(sys.argv) > 2:
         steps = int(sys.argv[2])
 
-    # now back to existing code
-    endpoints = take_all_walks(steps, runs)
-
-    # rest of the code...
+    # REPLACE take_walk WITH take_all_walks
+    end_locations = take_all_walks(steps, runs)
 ```
 
 Now `end_locations` will have a list of all the places where the walk
@@ -222,7 +215,7 @@ def average_final_distance(endpoints):
 
 # at end of __main__ code add these lines to see if it worked
 # mind the indentation, should be 4 spaces in front
-    average_displacement = average_final_distance(endpoints)
+    average_displacement = average_final_distance(end_locations)
     print(average_displacement)
 ```
 
