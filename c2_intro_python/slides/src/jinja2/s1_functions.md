@@ -92,4 +92,5 @@ print(greeting) # print the greeting
 1. Send data through them
 
 #### Functions are useful in all steps and belong almost everywhere
+
 {% endblock %}
