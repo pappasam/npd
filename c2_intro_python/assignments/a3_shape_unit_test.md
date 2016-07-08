@@ -13,3 +13,8 @@ Implement a passing unit test for at least one method in each of the three shape
 
 ## Challenge requirements
 
+1. Unit test all methods
+1. Refactor unit tests to repeat as little code as possible
+1. Look into the hypothesis testing framework
+  * https://hypothesis.readthedocs.io/en/latest/
+1. Write unit tests for other assignments

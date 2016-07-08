@@ -11,7 +11,7 @@ There are plenty of third party tools and libraries that abstract the reading an
 
 This assignment is intended to give you practice writing JSON and YAML files, reading them into Python, and processing their result, and writing a result back to disk.
 
-## Minimum requirements for full credit
+## Requirements for full credit
 
 ### Information
 
