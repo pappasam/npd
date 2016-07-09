@@ -14,7 +14,8 @@ Solve the following three problems without importing any modules.
 
 ## Challenge requirements
 
-1. Solve the above three problems using functionsin the itertools library
+1. Unit test your functions
+1. Solve the above three problems using functions in the itertools library
 1. Write a function that takes two lists and returns a new list containing elements that were not found in either list.
   * Hint: explore the *set* data structure. How does this differ from a list?
 1. Write a class called List that stores data like a normal python list but that also has map, filter, and reduce as methods (with the same functionality as above).
