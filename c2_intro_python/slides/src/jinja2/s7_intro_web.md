@@ -18,17 +18,24 @@
 
 ## Internet
 
-* Look up internet definition
+The global system of interconnected computer networks that use the Internet protocol suite (TCP/IP) to link billions of devices worldwide. - Wikipedia
 
 ## World wide web
 
-* Look up web definition
+An information space where documents and other web resources are identified by URLs, interlinked by hypertext links, and can be accessed via the Internet. - Wikipedia
 
 ---
 
 # Server-client relationship
 
-* Look up definition
+## Server
+
+* Provides a service
+* Perpetually awaits requests
+
+## Client
+
+* Requests a service from a server
 
 ---
 
@@ -36,11 +43,27 @@
 
 ## Definition
 
-* Look up definition
+* Hypertext Transfer Protocol
+* Foundation for data communication for the world wide web
 
-## Methods
+---
 
-* Look up methods
+## HTTP Methods
+
+## Common methods
+
+* GET
+* POST
+* PUT
+* DELETE
+* HEAD
+
+## Less common methods
+
+* OPTIONS
+* CONNECT
+* TRACE
+* PATCH
 
 ---
 
