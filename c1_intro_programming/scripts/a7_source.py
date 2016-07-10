@@ -88,15 +88,16 @@ def get_transit_time(target_solar_orbit_radius):
     full_time = time_until_halfway * 2
 
 
-attraction = force_from_gravity(EARTH['mass'], SUN_MASS, EARTH['orbital_radius'])
-print("The force of attraction due to gravity between the earth and the sun is: " + str(attaction))
+if __name__ == '__main__':
+    attraction = force_from_gravity(EARTH['mass'], SUN_MASS, EARTH['orbital_radius'])
+    print("The force of attraction due to gravity between the earth and the sun is: " + str(attaction))
 
-escape_velocity = escape_velocity(EARTH['mass'], EARTH['radius'])
-print("The escape velocity at the surface of the Earth is: "+str(escape_velocity))
+    escape_velocity = escape_velocity(EARTH['mass'], EARTH['radius'])
+    print("The escape velocity at the surface of the Earth is: "+str(escape_velocity))
 
-print("Should see the (idealized) travel time to Saturn given an engine")
-print("with capacity for " + EM_DRIVE_FORCE + " Newtons of constant thrust:")
-transit_time = get_transit_time(SATURN_ORBITAL_RADIUS)
-readable_transit = get_readable_time(transit_time)
-print(readable_transit)
+    print("Should see the (idealized) travel time to Saturn given an engine")
+    print("with capacity for " + EM_DRIVE_FORCE + " Newtons of constant thrust:")
+    transit_time = get_transit_time(SATURN_ORBITAL_RADIUS)
+    readable_transit = get_readable_time(transit_time)
+    print(readable_transit)
 
