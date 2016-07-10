@@ -1,19 +1,9 @@
 
-
-if [ -z ${course_vars_loaded+x} ]; then
-    echo "Course variables have not been set, you probably need to run \"./course_setup.sh\""
-    exit 1
-fi
+check_course_vars_loaded
 
 assignment_index="3"
 thisAssignment="$course_assignments/assignment_$assignment_index"
-if [ ! -d "$thisAssignment" ]; then
-    echo "Didn't find assignment_$assignment_index subdirectory, use following command to fix"
-    echo
-    echo "    mkdir $thisAssignment"
-    echo
-    exit 1
-fi
+check_assignment_started "$assignment_index"
 
 passing="true"
 
@@ -58,43 +48,41 @@ if [ -f $db_file ]; then
     rm $db_file
 fi
 
-output=$($list_cmd)
-if [ -n "$output" ]; then
-    passing="false"
-    echo "Listing tasks with none saved should have empty output"
-    echo "instead found: |$output|"
-fi
+compare_command_output_to_expected () {
+    cmd=$1
+    expected_output=$2
+    output=$($cmd)
+    if [ "$output" != "$expected_output" ]; then
+        echo "Output of command $cmd was: |$output|"
+        echo "Expected output was: |$expected_output|"
+        passing="false"
+    fi
+}
+
+report_assignment_passing () {
+    if [ "$2" != "true" ]; then
+        echo "Scripts in assignment_$1 do not meet specifications, details available"
+        echo "in earlier error messages"
+    else 
+        echo "COMPLETED: Assignment $1"
+    fi
+}
+
+expected_output=""
+compare_command_output_to_expected "$list_cmd" "$expected_output"
 
 $add_cmd "return library books"
-output="$($list_cmd)"
 expected_output="return library books"
-
-if [ "$output" != "$expected_output" ]; then
-    echo "Didnt get expected output: |$expected_output|"
-    echo "Instead got: |$output|"
-    passing="false"
-fi
+compare_command_output_to_expected "$list_cmd" "$expected_output"
 
 $add_cmd "learn programming"
 $add_cmd "pick up the milk"
-output=$($list_cmd)
 expected_output="return library books
 learn programming
 pick up the milk"
+compare_command_output_to_expected "$list_cmd" "$expected_output"
 
-if [ "$output" != "$expected_output" ]; then
-    passing="false"
-    echo "Didnt get expected output: |$expected_output|"
-    echo "Instead got: |$output|"
-fi
-
-
-if [ "$passing" != "true" ]; then
-    echo "Scripts in assignment_3 do not meet specifications, details available"
-    echo "in earlier error messages"
-else 
-    echo "COMPLETED: Assignment $assignment_index"
-fi
+report_assignment_passing $assignment_index $passing
 
 # restore original db from before test
 rm $db_file

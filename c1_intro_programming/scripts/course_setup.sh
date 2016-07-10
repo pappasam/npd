@@ -74,9 +74,55 @@ else
     echo "Your assignment repo was located in $course_assignments"
 fi
 
+check_assignment_started () {
+    thisAssignment="$course_assignments/assignment_$1"
+    if [ ! -d "$thisAssignment" ]; then
+        echo "Didn't find assignment_$1 subdirectory, use following command to fix"
+        echo
+        echo "    mkdir $thisAssignment"
+        echo
+        exit 1
+    fi
+}
+
+create_venv () {
+    if [ ! -d "$i/VENV" ]; then
+        if [ ! -d "$i" ]; then
+            echo "Creating $i and any subdirectories necessary"
+            mkdir -p $i
+        fi
+
+        echo "Creating virtual environment at $i/VENV"
+        cd $i #|| exit 1 # todo: fail script if this errors
+        python3 -m venv VENV
+    fi
+}
+
+check_course_vars_loaded () {
+
+    if [ -z ${course_vars_loaded+x} ]; then
+        echo "Course variables have not been set, you probably need to run \"./course_setup.sh\""
+        echo "This should quit calling scripts too... right?"
+        exit 1
+    fi
+
+    #if [ -z ${course_vars_loaded+x} ]; then
+        #if [ -f $config_file ]; then
+            #source $config_file
+        #else
+            #echo "Course variables have not been set, you probably need to run \"./course_setup.sh\""
+            #exit 1
+        #fi
+    #fi
+}
+
+export -f check_course_vars_loaded
+export -f check_assignment_started
+export -f create_venv
 $course_scripts/check_a1.sh
 $course_scripts/check_a2.sh
 $course_scripts/check_a3.sh
 $course_scripts/check_a4.sh
+$course_scripts/check_a5.sh
 
 cd $assignment_dir
