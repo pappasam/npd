@@ -49,11 +49,7 @@ fi
 script_add="save.py"
 script_list="list.py"
 
-if [ ! -d "$thisAssignment/VENV" ]; then
-    echo "Creating virtual environment in directory $thisAssignment/VENV"
-    python3 -m venv VENV
-fi
-source VENV/bin/activate
+assure_venv
 
 if [ ! -f $thisAssignment/$script_add ]; then
     echo "Script $thisAssignment/$script_add doesn't exist"
