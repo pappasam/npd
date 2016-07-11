@@ -43,44 +43,24 @@ list_cmd="$thisAssignment/$script_list"
 
 db_file="$HOME/task_database.txt"
 if [ -f $db_file ]; then
-    echo "Copying $db_file to backup: $db_file.bak"
+    # echo "Copying $db_file to backup: $db_file.bak"
     cp $db_file $db_file.bak
     rm $db_file
 fi
 
-compare_command_output_to_expected () {
-    cmd=$1
-    expected_output=$2
-    output=$($cmd)
-    if [ "$output" != "$expected_output" ]; then
-        echo "Output of command $cmd was: |$output|"
-        echo "Expected output was: |$expected_output|"
-        passing="false"
-    fi
-}
-
-report_assignment_passing () {
-    if [ "$2" != "true" ]; then
-        echo "Scripts in assignment_$1 do not meet specifications, details available"
-        echo "in earlier error messages"
-    else 
-        echo "COMPLETED: Assignment $1"
-    fi
-}
-
 expected_output=""
-compare_command_output_to_expected "$list_cmd" "$expected_output"
+compare_command_output_to_expected "$list_cmd" "$expected_output" passing
 
 $add_cmd "return library books"
 expected_output="return library books"
-compare_command_output_to_expected "$list_cmd" "$expected_output"
+compare_command_output_to_expected "$list_cmd" "$expected_output" passing
 
 $add_cmd "learn programming"
 $add_cmd "pick up the milk"
 expected_output="return library books
 learn programming
 pick up the milk"
-compare_command_output_to_expected "$list_cmd" "$expected_output"
+compare_command_output_to_expected "$list_cmd" "$expected_output" passing
 
 report_assignment_passing $assignment_index $passing
 

@@ -85,16 +85,33 @@ check_assignment_started () {
     fi
 }
 
+
 create_venv () {
-    if [ ! -d "$i/VENV" ]; then
-        if [ ! -d "$i" ]; then
-            echo "Creating $i and any subdirectories necessary"
-            mkdir -p $i
+    if [ ! -d "$1/VENV" ]; then
+        if [ ! -d "$1" ]; then
+            echo "Creating $1 and any subdirectories necessary"
+            mkdir -p $1
         fi
 
-        echo "Creating virtual environment at $i/VENV"
-        cd $i #|| exit 1 # todo: fail script if this errors
+        echo "Creating virtual environment at $1/VENV"
+        cd $1 #|| exit 1 # todo: fail script if this errors
         python3 -m venv VENV
+    fi
+}
+
+check_if_in_venv () {
+    local __is_venv_var=$1
+    local INVENV=""
+    python -c 'import sys; print sys.real_prefix' 2>/dev/null && INVENV="true" || INVENV="false"
+    eval $__is_venv_var="'$INVENV'"
+}
+
+assure_venv () {
+    local in_venv=""
+    check_if_in_venv in_venv
+    if [ $in_venv != "true" ]; then
+        create_venv $course_assignments
+        source $course_assignments/VENV/bin/activate
     fi
 }
 
@@ -116,13 +133,61 @@ check_course_vars_loaded () {
     #fi
 }
 
+compare_command_output_to_expected () {
+    local cmd=$1
+    local expected_output=$2
+    local __passingvar=$3
+    local output=$($cmd)
+    if [ "$output" != "$expected_output" ]; then
+        echo "Output of command $cmd was: |$output|"
+        echo "Expected output was: |$expected_output|"
+        eval $__passingvar="'false'"
+    fi
+}
+
+report_assignment_passing () {
+    if [ "$2" != "true" ]; then
+        echo "Scripts in assignment_$1 do not meet specifications, details available"
+        echo "in earlier error messages"
+    else 
+        echo "COMPLETED: Assignment $1"
+    fi
+}
+
+# $1 = $thisAssignment/test_exercises.py
+run_unit_tests () {
+    local test_script=$1
+    local __passingvar=$2
+
+    local tmp_file=$(mktemp)
+    python $test_script 2> $tmp_file
+    unit_test_output=$(cat $tmp_file)
+    last_line=$(echo "$unit_test_output" | tail -n1)
+    rm $tmp_file
+
+    if [[ $last_line == *"OK"* ]]; then
+        eval $__passingvar="'true'"
+    else
+        eval $__passingvar="'false'"
+        echo "Unit tests haven't passed, here is output::
+
+        $unit_test_output"
+    fi
+}
+
+export -f run_unit_tests
 export -f check_course_vars_loaded
 export -f check_assignment_started
+export -f compare_command_output_to_expected
+export -f report_assignment_passing
 export -f create_venv
+export -f check_if_in_venv
+export -f assure_venv
 $course_scripts/check_a1.sh
 $course_scripts/check_a2.sh
 $course_scripts/check_a3.sh
 $course_scripts/check_a4.sh
 $course_scripts/check_a5.sh
+$course_scripts/check_a6.sh
 
 cd $assignment_dir

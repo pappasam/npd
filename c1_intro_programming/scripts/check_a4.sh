@@ -26,7 +26,12 @@ if [ ! -f "$thisAssignment/hello.c" ]; then
     exit 1
 fi
 
-make
+if [ -f "$thisAssignment/hello" ]; then
+    make clean > /dev/null
+fi
+
+make > /dev/null
+
 if [ ! -x "$thisAssignment/hello" ]; then
     passing="false"
     echo "Makefile exists but doesn't generate an executable, please fix."
