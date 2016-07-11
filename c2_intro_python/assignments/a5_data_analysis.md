@@ -26,24 +26,56 @@ This dataset has been selected for the following reasons:
   * API
 1. It is well-documented
 
-## Final product
+## Minimum requirements
 
-To receive full credit, the final version of your application must:
+* Create a new git repository with the following structure:
 
-1. Be version controlled with Git and stored on GitHub
-1. Contain a README file at the top level describing what it does
-1. Authenticate using a session token
-1. Obtain all data through the API
-1. Answer at least 2 different questions about the data
-1. Unit test at least 3 functions or methods
-1. Expose the answer of at least one question in a browser using Flask
+```txt
+npd_c02_a5/
+  instance/
+    .gitignore
+    DOHMH_New_York_City_Restaurant_Inspection_Results.csv
+  src/
+    python/
+      config.py
+      main.py
+```
 
-As usual, the above requirements represent the **minimum** product. If you are able, we strongly recommend that you strive to exceed these requirements.
+* Download a csv version of the restaurant dataset, placing it in your instance/ directory
+* Place a .gitignore file in your instance directory with the following two lines
+  * This file ignores all files in the directory from version control, other than the gitignore itself
 
-## Intermediate products and prototyping
+```txt
+*
+!.gitignore
+```
 
-Although the final version of the application requires the API, exploring different questions may be easier using the downloadable dataset. As such, intermediate scripting will explore the downloadable dataset. The code you use for exploration will likely not be used in your final production application. This is normal in software development, where ideas are often tested in throw-away scripts and then finalized in code.
+### In config.py
 
-## Check-ins
+* Create a variable called *path_inspection_results* containing the full path to DOHMH_New_York_City_Restaurant_Inspection_Results.csv
+  * Hint: *os.path.dirname(os.path.abspath(__file__))* gives the full path to the current file
 
-During class, the instructor will check in with each individual or group to provide feedback and answer questions.
+### In main.py
+
+* Import path_inspection_results from config.py
+* Import the inspection results csv into pandas
+  * HINT - pandas.read_csv
+* calculate the following metrics using Pandas and print them to screen
+  * The unique count of restaurants
+    * HINT - read about *CAMIS* in the data dictionary
+  * The unique count of restaurants, grouped by restaurant type
+    * eg, unique number of japananese restaurants, mexican, etc
+
+## Challenge requirements
+
+### Additional questions to answer about the data
+
+* The number of restaurants that received an A grade, but nothing lower
+* The number of non-A grades in the zip code of someone you know (maybe even you)
+* Answer any other questions that strike your fancy. This dataset can be a lot of fun to work with
+
+### Additional challenges (to do from home if you have time)
+
+* Output your results from the questions into a csv (look into pandas.to_csv)
+* Download the dataset using the API
+  * Look into *requests*, a third-party module
