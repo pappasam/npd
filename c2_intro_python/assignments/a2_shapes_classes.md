@@ -24,7 +24,7 @@ All shapes in our simplified version of Flatland contain shapes with sides of eq
 
 ## Minimum requirements for full credit
 
-* Create a new git repositofy with the following structure
+* Create a new git repository with the following structure
 
 ```txt
 npd_c2_a2/
