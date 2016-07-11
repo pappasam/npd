@@ -6,10 +6,17 @@ The course 1 numerical problem solving challenges gave you a taste for problem-s
 
 ## Assignment
 
-1. Select one solution script from the course 1 problem solving exercises.
-1. Copy it into a file called SCRIPT_NAME_refactored.py
-  * SCRIPT_NAME is the name of the original script, sans ".py"
-1. At the top of the source code, create a module doc string with the following
+* Create a new git repository with the following structure
+
+```txt
+npd_c2_a1/
+  original.py
+  refactored.py
+```
+
+1. Select one solution script from the course 1 problem solving exercises, placing its contents in original.py
+1. Create a new empty file called refactored.py
+1. At the top of refactored.py, create a module doc string with the following
   * The main question your program tries to answer, written in English
   * The sub questions you need to answer to solve the main problem
   * The sub questions you must answer to solve each sub question
@@ -20,8 +27,6 @@ The course 1 numerical problem solving challenges gave you a taste for problem-s
   * Combines your user-defined functions
   * Prints the correct answer to the terminal
 1. Run this function
-
-As usual, the above assignment represents the minimum your must accomplish to achieve full credit on this assignment. When you've reached a stopping point on one file, move on to another, then another.
 
 ## Example
 
@@ -96,3 +101,7 @@ def main():
 if __name__ == '__main__':
     main()
 ```
+
+## Challenge requirements
+
+* Refactor as many scripts from course 1 as you can

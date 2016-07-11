@@ -24,6 +24,13 @@ All shapes in our simplified version of Flatland contain shapes with sides of eq
 
 ## Minimum requirements for full credit
 
+* Create a new git repositofy with the following structure
+
+```txt
+npd_c2_a2/
+  main.py
+```
+
 * Implement a class for each shape defining the following
   * Attributes
     * shape_type
@@ -42,7 +49,7 @@ All shapes in our simplified version of Flatland contain shapes with sides of eq
     * update_edge_length(self, change)
     * add_ally(self, shape_object)
     * add_enemy(self, shape_object)
-* In a function called minimum_main()
+* In a function called main()
   * Create two objects from each class
   * Make triangles and circles allies
   * Make squares enemies of triangles and circles

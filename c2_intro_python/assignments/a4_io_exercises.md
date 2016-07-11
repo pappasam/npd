@@ -11,9 +11,9 @@ There are plenty of third party tools and libraries that abstract the reading an
 
 This assignment is intended to give you practice writing JSON and YAML files, reading them into Python, and processing their result, and writing a result back to disk.
 
-## Requirements for full credit
+## Information
 
-### Information
+For this assignment, we care about the following information:
 
 * First name
 * Last name
@@ -22,7 +22,25 @@ This assignment is intended to give you practice writing JSON and YAML files, re
 * Favorite color
 * Favorite movie
 
-## Actions
+## Requirements for full credit
+
+### Create a new git repository with the following structure
+
+```txt
+npd_c2_a4/
+  input.csv
+  input.json
+  input.yaml
+  main.py
+```
+
+### In your .gitignore, add the following line
+
+```txt
+output.*
+```
+
+### Actions
 
 * Store information for three different hypothetical people in three different input datasets, formatted in the same way as their extensions:
   * input.csv (comma separated values)
@@ -33,7 +51,7 @@ This assignment is intended to give you practice writing JSON and YAML files, re
     * {'first_name': VALUE, 'last_name': VALUE, etc...}
 * Combine each file's dictionary into one dictionary with top-level key:
   * {'csv', 'json', 'yaml'}
-* Export the contents of all three datasets into :
+* Export the contents of all three datasets into
   * output.csv
   * output.json
   * output.yaml

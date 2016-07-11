@@ -6,10 +6,17 @@ Although your Flatland shape classes worked fine for your project, they may not 
 
 ## Minimum requirement for full credit
 
-Implement a passing unit test for at least one method in each of the three shape classes
+* Create a new git repository with the following structure
+
+```txt
+npd_c2_a3/
+  classes.py
+  tests.py
+```
+
+* Implement a passing unit test for at least one method in each of the three shape classes
   * Use the unittest module
-  * Unit tests should be in a separate test/ directory
-  * They should be runnable using the nosetests command line utility
+  * All unit tests shoudld be runnable using the nosetests command line utility
 
 ## Challenge requirements
 

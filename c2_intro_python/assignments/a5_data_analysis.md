@@ -31,7 +31,7 @@ This dataset has been selected for the following reasons:
 * Create a new git repository with the following structure:
 
 ```txt
-npd_c02_a5/
+npd_c2_a5/
   instance/
     .gitignore
     DOHMH_New_York_City_Restaurant_Inspection_Results.csv
