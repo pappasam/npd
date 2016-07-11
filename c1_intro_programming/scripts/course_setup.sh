@@ -189,5 +189,6 @@ $course_scripts/check_a3.sh
 $course_scripts/check_a4.sh
 $course_scripts/check_a5.sh
 $course_scripts/check_a6.sh
+$course_scripts/check_a7.sh
 
 cd $assignment_dir

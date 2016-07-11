@@ -23,7 +23,5 @@ else
 fi
 
 if [ "$passing" == "true" ]; then
-    echo "COMPLETED: Assignment 5"
+    echo "COMPLETED: Assignment $assignment_index"
 fi
-
-# compare_command_output_to_expected "$list_cmd" "$expected_output" passing
