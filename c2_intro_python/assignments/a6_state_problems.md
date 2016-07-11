@@ -6,6 +6,13 @@ Functional programming is easy to present in a classroom environment because it 
 
 ## Minimum requirements for full credit
 
+* Create a new git repository with the following structure:
+
+```txt
+npd_c2_a6/
+  main.py
+```
+
 Solve the following three problems without importing any modules.
 
 1. Write a function called *filter_custom* that takes two arguments: l (list) and f (a function that takes one argument). filter_customshould return a new list that contains all the elements e of l for which f(e) is True
