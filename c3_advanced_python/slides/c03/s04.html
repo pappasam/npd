@@ -178,7 +178,7 @@ my_collection.insert(my_objects)
     * If no object is found, `findOne` returns `None`.
 
 ```python
-my_object = my_collection.findOne({'name': 'Contact Name'})
+my_object = my_collection.find_one({'name': 'Contact Name'})
 ```
 
 ---
@@ -249,6 +249,45 @@ print 'deleted %d documents' % (del_result.deleted_count,)
 ```
 
 ---
+
+layout: true
+
+# Access Via Mongo Shell
+
+---
+
+## Accessing Mongo DB
+
+ * A Mongo shell is accessible with the application `mongo`.
+   * The database can be specified as an argument when executing `mongo`, e.g.:
+```sh
+mongo my_database
+```
+   * Or can be specified (and respecified) in the mongo shell with the `use` command:
+```sh
+use my_database
+```
+
+---
+
+## Operating In A Mongo DB
+
+ * In the mongo shell, operations can be performed through the `db` object, e.g.:
+
+```javascript
+db.insert({'attr': 'an attr'})
+```
+
+ * The operations map out as follows:
+   * Insert: `db.insert`
+   * Find a single object: `db.findOne`
+   * Update: `db.update`
+     * Upsert: `db.update({'attr': 'an attr'}, {'attr': 'a new value'}, {'update': true})`
+   * Remove: `db.remove`
+
+---
+
+layout: false
 
 # Excercise
   * Create a library of functions that handle DB operations for your data models.
