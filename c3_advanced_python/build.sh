@@ -13,7 +13,7 @@ declare -A SUBRES
 for i in ${SUBS[@]}; do
   SRCF=${i#*python ((}
   SRCF=${SRCF%))}
-  SUBCNT[${i/ *\`/\`\`\`}]=$(cat "python/$CRS/$SES/$SRCF" | sed -e 's/\\n/\\\\n/g' | sed -e ':a;N;$!ba;s/\n/\\n/g')
+  SUBCNT[${i/ *\`/\`\`\`}]=$(cat "python/$CRS/$SES/$SRCF" | sed -e 's/\\n/\\\\n/g' | sed -e 's/\//\\\//g' | sed -e ':a;N;$!ba;s/\n/\\n/g')
 done
 
 for k in ${RESS[@]}; do
