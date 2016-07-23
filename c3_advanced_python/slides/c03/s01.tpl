@@ -208,9 +208,9 @@ layout: true
 
 ## Get/Set Attributes and Items
 
-  * `__getattribute__(self, attr)` is called when an `object.attr` is made.
+  * `__getattr__(self, attr)` is called when an `object.attr` is made.
     * Either returns the attribute value or raises `AttributeError`.
-  * `__setattribute__(self, attr, value)` is called when `object.attr = value` is made.
+  * `__setattr__(self, attr, value)` is called when `object.attr = value` is made.
   * `__getitem__(self, item)` is called when an `object[item]` is made.
     * Either returns the attribute or raises `KeyError`.
   * `__setitem__(self, item, value)` is called when `object[item] = value` is made.
