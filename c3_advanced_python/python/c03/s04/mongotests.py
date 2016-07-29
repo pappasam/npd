@@ -18,6 +18,8 @@ my_coll = client.get_database(MY_DB).get_collection(MY_COLL)
 try:
   from your_module.py import find_object, update_object, remove_object
 except ImportError, ie:
+  from warnings import warn
+  warn('Failed to import library!')
   def find_object(my_key):
     return None
   def update_object(my_obj):
