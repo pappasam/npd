@@ -1,15 +1,5 @@
 from pymongo import MongoClient
 from unittest import TestCase, main
-#Replace with your module's name
-try:
-  from your_module.py import find_object, update_object, remove_object
-except ImportError, ie:
-  def find_object(my_key):
-    return None
-  def update_object(my_obj):
-    return None
-  def remove_object(my_obj):
-    return None
 
 client = MongoClient()
 
@@ -24,6 +14,17 @@ MY_PRIMARY_KEY_NAME = 'an_attr'
 
 my_coll = client.get_database(MY_DB).get_collection(MY_COLL)
 
+#Replace with your module's name
+try:
+  from your_module.py import find_object, update_object, remove_object
+except ImportError, ie:
+  def find_object(my_key):
+    return None
+  def update_object(my_obj):
+    return None
+  def remove_object(my_key):
+    return None
+
 class MongoTests(TestCase):
 
   def setUp(self):
@@ -33,21 +34,24 @@ class MongoTests(TestCase):
     my_obj = dict()
     my_obj[MY_PRIMARY_KEY_NAME] = 'my_key'
     update_object(my_obj)
-    my_db_obj = my_coll.find_one(my_obj)
+    my_db_obj = my_coll.find_one(my_obj, {'_id': 0})
     self.assertEquals(my_obj, my_db_obj)
 
   def test_find(self):
     my_obj = dict()
     my_obj[MY_PRIMARY_KEY_NAME] = 'my_key'
     my_coll.insert(my_obj)
-    my_found_obj = find_object(my_obj)
+    my_obj.pop('_id', None)
+    my_found_obj = find_object('my_key')
+    if my_found_obj:
+      my_found_obj.pop('_id', None)
     self.assertEquals(my_obj, my_found_obj)
 
   def test_delete(self):
     my_obj = dict()
     my_obj[MY_PRIMARY_KEY_NAME] = 'my_key'
     my_coll.insert(my_obj)
-    self.assertEquals(remove_object(my_obj), True)
+    self.assertEquals(remove_object('my_key'), True)
     self.assertEquals(my_coll.find_one(my_obj), None)
 
   def tearDown(self):
