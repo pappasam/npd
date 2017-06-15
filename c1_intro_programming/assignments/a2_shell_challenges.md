@@ -126,7 +126,7 @@ should named `index.html` and `vimrc_minimum`.**
 
     cd ~/intro-programming/assignment_2/
     wget www.google.com
-    wget https://raw.githubusercontent.com/pappasam/configsettings/master/vimrc_minimum
+    wget https://raw.githubusercontent.com/pappasam/npd/Summer_2017/c1_intro_programming/scripts/vimrc_minimum
 
 You are encouraged to download other files for inspection to learn more about
 web files but only the above two examples need to be staged and commited for
