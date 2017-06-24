@@ -1,6 +1,15 @@
 #!/bin/bash
+#
+# If repo name is other than nyu-python, please add name as arugment to script
+# example:
+# course_setup.sh NYU-Python-Repo
+#
 
-export repo_name="nyu-python"
+if [ "x${1}x" = "xx" ]; then
+    export repo_name="nyu-python"
+else
+    export repo_name="${1}"
+fi
 export repo_path="$HOME/dev/${repo_name}"
 export course_dir="${repo_path}"
 export course_scripts="$course_dir/c1_intro_programming/scripts"
