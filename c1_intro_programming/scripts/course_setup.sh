@@ -1,6 +1,8 @@
 #!/bin/bash
 
-export course_dir="$HOME/npd"
+export repo_name="nyu-python"
+export repo_path="$HOME/dev/${repo_name}"
+export course_dir="${repo_path}"
 export course_scripts="$course_dir/c1_intro_programming/scripts"
 export course_current_branch="C1"
 export course_vars_loaded="true"
